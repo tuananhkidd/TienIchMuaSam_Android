@@ -2,6 +2,7 @@ package com.beetech.tienichmuasam.di.module;
 
 
 import com.beetech.tienichmuasam.ui.home.HomeFragment;
+import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsFragment;
 import com.beetech.tienichmuasam.ui.splash.SplashFragment;
 
 import dagger.Module;
@@ -16,4 +17,7 @@ public abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract HomeFragment bindHomeFragment();
+
+    @ContributesAndroidInjector
+    abstract NewFeedsFragment bindNewFeedsFragment();
 }

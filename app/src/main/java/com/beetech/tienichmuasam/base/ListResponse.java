@@ -31,6 +31,10 @@ public class ListResponse<T> extends BaseResponse{
         this.error = error;
     }
 
+    public void setData(List<T> data) {
+        this.data = data;
+    }
+
     public int getTotalPage() {
         return totalPage;
     }

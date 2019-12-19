@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.beetech.tienichmuasam.di.ViewModelFactory;
 import com.beetech.tienichmuasam.ui.home.HomeViewModel;
+import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsViewModel;
 import com.beetech.tienichmuasam.ui.main.MainViewModel;
 import com.beetech.tienichmuasam.ui.splash.SplashViewModel;
 
@@ -30,6 +31,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(MainViewModel.class)
     abstract ViewModel bindMainViewModel(MainViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewFeedsViewModel.class)
+    abstract ViewModel bindNewFeedsViewModel(NewFeedsViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);
