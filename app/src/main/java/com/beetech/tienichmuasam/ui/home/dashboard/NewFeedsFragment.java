@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.beetech.tienichmuasam.R;
+import com.beetech.tienichmuasam.adapter.CategoryHomeAdapter;
 import com.beetech.tienichmuasam.adapter.viewpager.NewsFeedSlideAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.custom.behavior.CarouselEffectTransformer;
 import com.beetech.tienichmuasam.databinding.FragmentNewFeedsBinding;
+import com.beetech.tienichmuasam.utils.DeviceUtil;
 import com.beetech.tienichmuasam.utils.UIUtil;
 
 /**
@@ -17,6 +19,8 @@ import com.beetech.tienichmuasam.utils.UIUtil;
 public class NewFeedsFragment extends BaseFragment<FragmentNewFeedsBinding> {
     private NewFeedsViewModel newFeedsViewModel;
     private NewsFeedSlideAdapter newsFeedSlideAdapter;
+    private CategoryHomeAdapter categoryHomeAdapter;
+
     public NewFeedsFragment() {
     }
 
@@ -38,14 +42,18 @@ public class NewFeedsFragment extends BaseFragment<FragmentNewFeedsBinding> {
 
     @Override
     public void initView() {
-
+        binding.tvTop.setSelected(true);
+        if (getActivity() != null) {
+            binding.container.setPadding(0, DeviceUtil.getStatusBarHeight(getActivity()), 0, 0);
+        }
+        binding.btnTotal.setNumber(6,true);
     }
 
     @Override
     public void initData() {
         newFeedsViewModel = ViewModelProviders.of(this, viewModelFactory).get(NewFeedsViewModel.class);
 
-        newFeedsViewModel.getBanner().observe(getViewLifecycleOwner(),bannerResponseListResponse -> {
+        newFeedsViewModel.getBanner().observe(getViewLifecycleOwner(), bannerResponseListResponse -> {
             newsFeedSlideAdapter = new NewsFeedSlideAdapter(getActivity(), bannerResponseListResponse);
             binding.vpHotNews.setClipChildren(false);
             binding.vpHotNews.setClipToPadding(false);
@@ -54,11 +62,21 @@ public class NewFeedsFragment extends BaseFragment<FragmentNewFeedsBinding> {
             binding.vpHotNews.setPageTransformer(false, new CarouselEffectTransformer(getActivity())); // Set transformer
             binding.vpHotNews.setAdapter(newsFeedSlideAdapter);
             binding.indicator.setViewPager(binding.vpHotNews);
-
         });
 
         newFeedsViewModel.getListBanner();
 
+        initHomeCategoryAdapter();
+
     }
 
+    private void initHomeCategoryAdapter() {
+        categoryHomeAdapter = new CategoryHomeAdapter();
+        binding.rvItems.setAdapter(categoryHomeAdapter);
+
+        newFeedsViewModel.getCategory().observe(getViewLifecycleOwner(), categoryResponses -> {
+            categoryHomeAdapter.setData(categoryResponses);
+        });
+        newFeedsViewModel.getListCategory();
+    }
 }

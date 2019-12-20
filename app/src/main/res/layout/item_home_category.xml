@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="category"
+            type="com.beetech.tienichmuasam.entity.CategoryResponse" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        app:civ_border_color="#81C784"
+        app:civ_border_width="@dimen/margin_2dp"
+        android:id="@+id/ivCategory"
+        android:layout_width="60dp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintDimensionRatio="1:1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:image="@{category.logo}"
+        tools:src="@drawable/ic_feedback" />
+
+    <!--<View-->
+    <!--android:id="@+id/view_anchor"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:layout_marginBottom="@dimen/margin_12dp"-->
+    <!--app:layout_constraintBottom_toBottomOf="@+id/ivCategory" />-->
+
+    <TextView
+        android:layout_marginTop="@dimen/margin_10dp"
+        android:layout_marginBottom="@dimen/margin_10dp"
+        android:text="@{category.category}"
+        android:id="@+id/tvTitle"
+        tools:text="ahuhu"
+        style="@style/TextViewHomeStyle"
+        app:layout_constraintTop_toBottomOf="@id/ivCategory"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

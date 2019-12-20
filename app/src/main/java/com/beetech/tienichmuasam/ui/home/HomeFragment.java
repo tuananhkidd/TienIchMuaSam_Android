@@ -40,6 +40,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding> {
 
         homePagerAdapter = new HomePagerAdapter(getChildFragmentManager());
         binding.vpHome.setAdapter(homePagerAdapter);
+        binding.vpHome.setOffscreenPageLimit(5);
         binding.vpHome.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MVVMBaseProject</string>
+    <string name="app_name">Tiện ích mua sắm</string>
     <string name="menu_dashboard">Trang chủ</string>
     <string name="menu_search">Tìm kiếm</string>
     <string name="menu_chat">Nhắn tin</string>

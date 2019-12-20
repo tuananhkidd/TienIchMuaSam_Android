@@ -12,10 +12,9 @@ import com.beetech.tienichmuasam.databinding.FragmentSearchBinding;
  * A simple {@link Fragment} subclass.
  */
 public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
-
+    private SearchViewModel searchViewModel;
 
     public SearchFragment() {
-        // Required empty public constructor
     }
 
 
