@@ -10,13 +10,13 @@ import com.bumptech.glide.Glide;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CategoryResponse {
-    private int id;
+    private Integer id;
     private String category;
     private String url;
     @DrawableRes
     private int logo;
 
-    public CategoryResponse(int id,@DrawableRes int logo, String category) {
+    public CategoryResponse(Integer id,@DrawableRes int logo, String category) {
         this.id = id;
         this.logo = logo;
         this.category = category;
@@ -30,11 +30,11 @@ public class CategoryResponse {
         this.logo = logo;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

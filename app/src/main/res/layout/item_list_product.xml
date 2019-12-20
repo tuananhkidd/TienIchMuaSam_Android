@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.beetech.tienichmuasam.entity.ListProductResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:image="@{product.avatarUrl}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/philosopher_bold"
+            android:maxLines="2"
+            android:paddingStart="@dimen/margin_10dp"
+            android:text="@{product.name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+            app:layout_constraintTop_toTopOf="@+id/iv_avatar"
+            tools:text="ahuhu" />
+
+        <TextView
+            android:id="@+id/tv_seller_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/philosopher_bold"
+            android:maxLines="1"
+            android:paddingStart="@dimen/margin_10dp"
+            android:price="@{product.sellerPrice}"
+            android:textColor="#FF5722"
+            android:textSize="@dimen/text_size20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="ahuhu" />
+
+        <TextView
+            android:id="@+id/tv_regular_price"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/philosopher_regular"
+            android:maxLines="1"
+            android:paddingStart="@dimen/margin_10dp"
+            android:price="@{product.regularPrice}"
+            android:textColor="#979292"
+            android:textSize="@dimen/text_size14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_avatar"
+            app:layout_constraintTop_toBottomOf="@id/tv_seller_price"
+            tools:text="ahuhu" />
+
+        <TextView
+            android:id="@+id/tv_count_favourite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_6dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/lato_regular"
+            android:maxLines="1"
+            android:paddingStart="@dimen/margin_10dp"
+            android:text="@{String.valueOf(product.favouriteCount)}"
+            android:textColor="#979292"
+            android:textSize="@dimen/text_size14"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:text="(33)" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="@dimen/margin_20dp"
+            android:layout_height="@dimen/margin_20dp"
+            android:layout_marginTop="@dimen/margin_10dp"
+            android:src="@drawable/ic_heart_red"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_regular_price" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

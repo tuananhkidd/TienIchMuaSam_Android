@@ -52,6 +52,14 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
         initData();
     }
 
+    public ViewController getViewController() {
+        if (mViewController == null) {
+            return ((BaseActivity) getActivity()).getViewController();
+        } else {
+            return mViewController;
+        }
+    }
+
     protected abstract int getLayoutId();
 
     public void setViewController(ViewController viewController) {
@@ -108,7 +116,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
     protected void handleLoadMoreResponse(ListResponse<?> response, boolean isRefresh, boolean canLoadmore) {
         switch (response.getType()) {
             case Define.ResponseStatus.LOADING:
-//                DialogUtil.getInstance(getContext()).show();
+                DialogUtil.getInstance(getContext()).show();
                 break;
             case Define.ResponseStatus.SUCCESS:
                 getListResponse(response.getData(), isRefresh, canLoadmore);

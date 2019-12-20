@@ -1,6 +1,7 @@
 package com.beetech.tienichmuasam.adapter;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,6 +17,11 @@ import java.util.List;
 
 public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapter.CategoryHomeViewHolder> {
     private List<CategoryResponse> categoryResponses = new ArrayList<>();
+    private OnCategoryClickListener listener;
+
+    public void setListener(OnCategoryClickListener listener) {
+        this.listener = listener;
+    }
 
     public void setData(List<CategoryResponse> categoryResponses) {
         this.categoryResponses.clear();
@@ -40,16 +46,26 @@ public class CategoryHomeAdapter extends RecyclerView.Adapter<CategoryHomeAdapte
         return categoryResponses.size();
     }
 
-    public class CategoryHomeViewHolder extends RecyclerView.ViewHolder {
+    public class CategoryHomeViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ItemHomeCategoryBinding binding;
 
         public CategoryHomeViewHolder(ItemHomeCategoryBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
+            binding.getRoot().setOnClickListener(this);
         }
 
         public void bind(CategoryResponse categoryResponse) {
             binding.setCategory(categoryResponse);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClickCategory(getAdapterPosition());
+        }
+    }
+
+    public interface OnCategoryClickListener{
+        void onClickCategory(int position);
     }
 }

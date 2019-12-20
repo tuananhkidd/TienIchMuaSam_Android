@@ -1,6 +1,8 @@
 package com.beetech.tienichmuasam.ui.home.dashboard;
 
 
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -10,8 +12,12 @@ import com.beetech.tienichmuasam.adapter.viewpager.NewsFeedSlideAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.custom.behavior.CarouselEffectTransformer;
 import com.beetech.tienichmuasam.databinding.FragmentNewFeedsBinding;
+import com.beetech.tienichmuasam.ui.list_product.ListProductFragment;
+import com.beetech.tienichmuasam.utils.Constant;
 import com.beetech.tienichmuasam.utils.DeviceUtil;
 import com.beetech.tienichmuasam.utils.UIUtil;
+
+import java.util.HashMap;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -76,6 +82,11 @@ public class NewFeedsFragment extends BaseFragment<FragmentNewFeedsBinding> {
 
         newFeedsViewModel.getCategory().observe(getViewLifecycleOwner(), categoryResponses -> {
             categoryHomeAdapter.setData(categoryResponses);
+            categoryHomeAdapter.setListener(position -> {
+                HashMap<String,Integer> data = new HashMap<>();
+                data.put(Constant.CATEGORY_ID,categoryResponses.get(position).getId());
+                getViewController().addFragment(ListProductFragment.class,data);
+            });
         });
         newFeedsViewModel.getListCategory();
     }

@@ -40,7 +40,7 @@ public class NewFeedsViewModel extends BaseViewModel {
 
     public void getListCategory() {
         List<CategoryResponse> data = new ArrayList<>();
-        data.add(new CategoryResponse(0, R.drawable.ic_gerenals_home,"Tổng hợp"));
+        data.add(new CategoryResponse(null, R.drawable.ic_gerenals_home,"Tổng hợp"));
         data.add(new CategoryResponse(1, R.drawable.ic_shoe_home,"Giày"));
         data.add(new CategoryResponse(2, R.drawable.ic_sandal_home,"Dép"));
         data.add(new CategoryResponse(3, R.drawable.ic_clothe_home,"Áo"));

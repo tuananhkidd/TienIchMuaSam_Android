@@ -7,6 +7,7 @@ import com.beetech.tienichmuasam.di.ViewModelFactory;
 import com.beetech.tienichmuasam.ui.home.HomeViewModel;
 import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsViewModel;
 import com.beetech.tienichmuasam.ui.home.search.SearchViewModel;
+import com.beetech.tienichmuasam.ui.list_product.ListProductViewModel;
 import com.beetech.tienichmuasam.ui.main.MainViewModel;
 import com.beetech.tienichmuasam.ui.splash.SplashViewModel;
 
@@ -42,6 +43,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(SearchViewModel.class)
     abstract ViewModel bindSearchViewModel(SearchViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ListProductViewModel.class)
+    abstract ViewModel bindListProductViewModel(ListProductViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

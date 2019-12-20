@@ -29,7 +29,7 @@ android {
             //signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'BASE_URL', '"http://api.handycart.vn/api/v1/"'
+            buildConfigField 'String', 'BASE_URL', '"http://192.168.2.184:7500/api/"'
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         stage {
@@ -111,8 +111,8 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'de.hdodenhof:circleimageview:3.0.1'
-    compile "androidx.core:core-ktx:+"
-    compile "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
+    implementation "androidx.core:core-ktx:+"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

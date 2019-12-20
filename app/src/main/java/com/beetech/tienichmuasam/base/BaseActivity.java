@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 
-
 import com.beetech.tienichmuasam.network.NetworkCheckerInterceptor;
 import com.beetech.tienichmuasam.network.model.ApiObjectResponse;
 import com.beetech.tienichmuasam.network.model.RequestError;
@@ -63,6 +62,13 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppC
 
     public abstract int getFragmentContainerId();
 
+    public ViewController getViewController() {
+        if (mViewController == null) {
+            mViewController = new ViewController(getSupportFragmentManager(), getFragmentContainerId());
+        }
+        return mViewController;
+    }
+
     @Override
     public void onBackPressed() {
         if (mViewController != null && mViewController.getCurrentFragment() != null) {
@@ -76,6 +82,7 @@ public abstract class BaseActivity<T extends ViewDataBinding> extends DaggerAppC
 
     /**
      * Used for hide softKeyboard when touch outside
+     *
      * @param ev
      * @return
      */

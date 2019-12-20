@@ -13,7 +13,7 @@ import io.reactivex.annotations.Nullable;
 public class ListResponse<T> extends BaseResponse{
     private int type;
 
-    @SerializedName("total_page")
+    @SerializedName("totalPage")
     private int totalPage;
 
     @Nullable
