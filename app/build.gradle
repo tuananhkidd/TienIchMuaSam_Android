@@ -51,7 +51,7 @@ android {
     productFlavors {
         base {
             dimension "version"
-            applicationId "com.base.mvvmbaseproject"
+            applicationId "com.beetech.tienichmuasam"
         }
         client {
             dimension "version"
@@ -114,6 +114,11 @@ dependencies {
     implementation "androidx.core:core-ktx:+"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    // firebase
+    implementation 'com.google.firebase:firebase-messaging:11.8.0'
+    implementation 'com.google.firebase:firebase-storage:11.8.0'
+    implementation 'com.google.firebase:firebase-firestore:11.8.0'
+    implementation 'com.google.firebase:firebase-auth:11.8.0'
 }
 repositories {
     mavenCentral()
