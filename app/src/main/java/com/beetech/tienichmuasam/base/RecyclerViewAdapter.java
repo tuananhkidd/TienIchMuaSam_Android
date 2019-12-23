@@ -305,7 +305,9 @@ public abstract class RecyclerViewAdapter<T extends ViewDataBinding> extends Rec
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, final int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        binding = DataBindingUtil.inflate(layoutInflater, getLayoutId(), parent, false);
+        if (getLayoutId() != 0) {
+            binding = DataBindingUtil.inflate(layoutInflater, getLayoutId(), parent, false);
+        }
         final RecyclerView.ViewHolder viewHolder = solvedOnCreateViewHolder(parent, viewType);
         setClickStateBackground(viewHolder.itemView, viewType, false);
         viewHolder.itemView.setOnTouchListener(new View.OnTouchListener() {
@@ -349,7 +351,10 @@ public abstract class RecyclerViewAdapter<T extends ViewDataBinding> extends Rec
 
     protected RecyclerView.ViewHolder solvedOnCreateViewHolder(ViewGroup parent, int viewType) {
         if (viewType == VIEW_TYPE_NORMAL) {
-            return initNormalViewHolder(binding,parent);
+            if (binding == null) {
+                initNormalViewHolder(parent);
+            }
+            return initNormalViewHolder(binding, parent);
         }
         return null;
     }
@@ -370,7 +375,9 @@ public abstract class RecyclerViewAdapter<T extends ViewDataBinding> extends Rec
         }
     }
 
-    protected abstract RecyclerView.ViewHolder initNormalViewHolder(T binding,ViewGroup parent);
+    protected abstract RecyclerView.ViewHolder initNormalViewHolder(T binding, ViewGroup parent);
+
+    protected abstract RecyclerView.ViewHolder initNormalViewHolder(ViewGroup parent);
 
     protected abstract void bindNormalViewHolder(NormalViewHolder holder, int position);
 
@@ -425,6 +432,7 @@ public abstract class RecyclerViewAdapter<T extends ViewDataBinding> extends Rec
         public NormalViewHolder(View itemView) {
             super(itemView);
         }
+
         public abstract void bind(U data);
     }
 

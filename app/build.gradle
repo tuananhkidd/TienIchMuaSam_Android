@@ -29,7 +29,7 @@ android {
             //signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'BASE_URL', '"http://192.168.2.184:7500/api/"'
+            buildConfigField 'String', 'BASE_URL', '"http://192.168.2.248:7500/api/"'
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         stage {
@@ -119,7 +119,11 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:11.8.0'
     implementation 'com.google.firebase:firebase-firestore:11.8.0'
     implementation 'com.google.firebase:firebase-auth:11.8.0'
+
+    // loading animation
+    implementation 'com.wang.avi:library:2.1.3'
 }
+apply plugin: 'com.google.gms.google-services'
 repositories {
     mavenCentral()
 }

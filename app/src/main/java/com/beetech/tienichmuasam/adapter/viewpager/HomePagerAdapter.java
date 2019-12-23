@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.beetech.tienichmuasam.base.BaseFragment;
+import com.beetech.tienichmuasam.ui.home.chat.ChatFragment;
 import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsFragment;
 import com.beetech.tienichmuasam.ui.home.search.SearchFragment;
 
@@ -19,7 +20,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         super(fm);
         fragments.add(new NewFeedsFragment());
         fragments.add(new SearchFragment());
-        fragments.add(new SearchFragment());
+        fragments.add(new ChatFragment());
         fragments.add(new SearchFragment());
         fragments.add(new SearchFragment());
     }

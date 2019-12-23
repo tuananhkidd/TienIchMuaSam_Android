@@ -22,6 +22,11 @@ public class ListProductAdapter extends EndlessLoadingRecyclerViewAdapter<ItemLi
     }
 
     @Override
+    protected RecyclerView.ViewHolder initNormalViewHolder(ViewGroup parent) {
+        return null;
+    }
+
+    @Override
     protected void bindNormalViewHolder(NormalViewHolder holder, int position) {
         ListProductViewHolder searchViewHolder = (ListProductViewHolder) holder;
         searchViewHolder.bind(getItem(position, ListProductResponse.class));

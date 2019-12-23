@@ -32,4 +32,9 @@
     <dimen name="text_size24">24sp</dimen>
     <dimen name="text_size28">28sp</dimen>
     <dimen name="text_size36">36sp</dimen>
+    <dimen name="small_padding">6dp</dimen>
+    <dimen name="tiny_padding">2dp</dimen>
+    <dimen name="tiny_avatar_size">32dp</dimen>
+    <dimen name="edit_text_max_width">280dp</dimen>
+    <dimen name="edit_text_padding">10dp</dimen>
 </resources>

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#81C784</color>
-    <color name="colorPrimaryDark">#2F84AA</color>
+    <color name="colorPrimaryDark">#65A868</color>
     <color name="colorAccent">#D81B60</color>
     <color name="black">#000000</color>
     <color name="black_text">#FF222222</color>
     <color name="white">#ffffff</color>
     <color name="gray">#E5E5E5</color>
+    <color name="owned_message_background_unsent">@color/colorPrimaryDark</color>
+    <color name="owned_message_background_sent">@color/colorPrimary</color>
+    <color name="opposite_message_background">@android:color/white</color>
+    <color name="transparency_black">#3F000000</color>
+    <color name="dot_online_color">#00FF00</color>
+    <color name="dot_offline_color">#AAAAAA</color>
 </resources>

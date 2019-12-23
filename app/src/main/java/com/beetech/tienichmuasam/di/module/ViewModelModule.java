@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.beetech.tienichmuasam.di.ViewModelFactory;
 import com.beetech.tienichmuasam.ui.home.HomeViewModel;
+import com.beetech.tienichmuasam.ui.home.chat.ChatViewModel;
 import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsViewModel;
 import com.beetech.tienichmuasam.ui.home.search.SearchViewModel;
 import com.beetech.tienichmuasam.ui.list_product.ListProductViewModel;
@@ -48,6 +49,11 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(ListProductViewModel.class)
     abstract ViewModel bindListProductViewModel(ListProductViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ChatViewModel.class)
+    abstract ViewModel bindChatViewModel(ChatViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

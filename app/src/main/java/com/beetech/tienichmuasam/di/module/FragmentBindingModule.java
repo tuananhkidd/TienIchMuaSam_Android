@@ -2,6 +2,7 @@ package com.beetech.tienichmuasam.di.module;
 
 
 import com.beetech.tienichmuasam.ui.home.HomeFragment;
+import com.beetech.tienichmuasam.ui.home.chat.ChatFragment;
 import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsFragment;
 import com.beetech.tienichmuasam.ui.home.search.SearchFragment;
 import com.beetech.tienichmuasam.ui.list_product.ListProductFragment;
@@ -28,4 +29,7 @@ public abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract ListProductFragment bindListProductFragment();
+
+    @ContributesAndroidInjector
+    abstract ChatFragment bindChatFragment();
 }

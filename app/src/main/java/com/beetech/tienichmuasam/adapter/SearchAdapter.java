@@ -22,6 +22,11 @@ public class SearchAdapter extends EndlessLoadingRecyclerViewAdapter<ItemSearchB
     }
 
     @Override
+    protected RecyclerView.ViewHolder initNormalViewHolder(ViewGroup parent) {
+        return null;
+    }
+
+    @Override
     protected void bindNormalViewHolder(NormalViewHolder holder, int position) {
         SearchViewHolder searchViewHolder = (SearchViewHolder) holder;
         searchViewHolder.bind(getItem(position, SearchResponse.class));
