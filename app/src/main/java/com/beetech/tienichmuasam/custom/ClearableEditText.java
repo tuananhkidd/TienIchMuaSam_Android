@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -21,6 +22,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 import com.beetech.tienichmuasam.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -128,6 +132,8 @@ public class ClearableEditText extends RelativeLayout implements View.OnClickLis
         addView(editText);
         addView(clearButton);
 
+        Typeface font = ResourcesCompat.getFont(context,R.font.lato_regular);
+        editText.setTypeface(font);
         String text = a.getString(R.styleable.ClearableEditText_android_text);
 
         editText.setText(text);

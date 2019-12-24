@@ -1,16 +1,16 @@
 <layout>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mRrootLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.beetech.tienichmuasam.ui.home.search.SearchFragment">
-
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
-
-    </FrameLayout>
+        <ImageView
+            android:layout_margin="@dimen/margin_30dp"
+            android:id="@+id/btn_shortcut"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_feedback" />
+    </RelativeLayout>
 </layout>

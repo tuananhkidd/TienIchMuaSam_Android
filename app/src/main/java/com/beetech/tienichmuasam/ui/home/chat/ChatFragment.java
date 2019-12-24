@@ -87,9 +87,9 @@ public class ChatFragment extends BaseFragment<ChatFragmentBinding> implements E
             @Override
             public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
                 if ((start + count) == 0) {
-                    mViewModel.updateUserTypingState("", "cd6fc031-4a31-433d-a0b4-a5fc3b2fb528", false);
+                    mViewModel.updateUserTypingState(false);
                 } else if (before == 0) {
-                    mViewModel.updateUserTypingState("", "cd6fc031-4a31-433d-a0b4-a5fc3b2fb528", true);
+                    mViewModel.updateUserTypingState(true);
                 }
             }
 

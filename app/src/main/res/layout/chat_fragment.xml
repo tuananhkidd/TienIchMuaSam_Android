@@ -66,6 +66,7 @@
                     android:layout_toRightOf="@id/img_friend_online_state"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/text_size10"
+                    android:fontFamily="@font/philosopher_regular"
                     android:text="online" />
             </RelativeLayout>
         </LinearLayout>
