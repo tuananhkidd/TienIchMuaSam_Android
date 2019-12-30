@@ -2,6 +2,7 @@ package com.beetech.tienichmuasam.custom;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,9 +59,9 @@ public class BaseToolbar extends RelativeLayout {
 
         String title = a.getString(R.styleable.BaseToolbar_bt_title);
         tvTitle.setText(title);
-        int btnBackRs = a.getInt(R.styleable.BaseToolbar_bt_ic_left, R.drawable.ic_back);
-        btnBack.setImageResource(btnBackRs);
-        int btnRightRs = a.getInt(R.styleable.BaseToolbar_bt_ic_left, 0);
+        Drawable btnBackRs = a.getDrawable(R.styleable.BaseToolbar_bt_ic_left);
+        btnBack.setImageDrawable(btnBackRs);
+        Drawable btnRightRs = a.getDrawable(R.styleable.BaseToolbar_bt_ic_left);
         Glide.with(context)
                 .load(btnRightRs)
                 .into(btnRight);

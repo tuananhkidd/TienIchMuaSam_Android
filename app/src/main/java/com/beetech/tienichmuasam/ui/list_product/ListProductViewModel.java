@@ -40,7 +40,8 @@ public class ListProductViewModel extends BaseViewModel {
                         .subscribe(
                                 response -> {
                                     pageIndex++;
-                                    listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().success(response.getData(), isRefresh,
+                                    listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().success(
+                                            response.getData(), isRefresh,
                                             pageIndex <= response.getTotalPage()));
                                 },
                                 throwable -> {
