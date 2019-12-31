@@ -11,7 +11,7 @@
         tools:context="com.beetech.tienichmuasam.ui.list_product.ListProductFragment">
 
         <com.beetech.tienichmuasam.custom.BaseToolbar
-            android:id="@+id/tv"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:bt_ic_left="@drawable/ic_back"
@@ -24,8 +24,7 @@
             android:id="@+id/rcv_list_product"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:brv_padding="@dimen/margin_10dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

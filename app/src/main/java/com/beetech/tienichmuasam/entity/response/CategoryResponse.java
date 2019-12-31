@@ -1,4 +1,4 @@
-package com.beetech.tienichmuasam.entity;
+package com.beetech.tienichmuasam.entity.response;
 
 import android.widget.ImageView;
 

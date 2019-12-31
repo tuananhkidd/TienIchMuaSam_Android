@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.base.EndlessLoadingRecyclerViewAdapter;
 import com.beetech.tienichmuasam.databinding.ItemSearchBinding;
-import com.beetech.tienichmuasam.entity.SearchResponse;
+import com.beetech.tienichmuasam.entity.response.SearchResponse;
 
 public class SearchAdapter extends EndlessLoadingRecyclerViewAdapter<ItemSearchBinding> {
 
@@ -19,11 +19,6 @@ public class SearchAdapter extends EndlessLoadingRecyclerViewAdapter<ItemSearchB
     @Override
     protected RecyclerView.ViewHolder initNormalViewHolder(ItemSearchBinding binding, ViewGroup parent) {
         return new SearchViewHolder(binding);
-    }
-
-    @Override
-    protected RecyclerView.ViewHolder initNormalViewHolder(ViewGroup parent) {
-        return null;
     }
 
     @Override

@@ -1,8 +1,8 @@
 package com.beetech.tienichmuasam.network.repository;
 
 import com.beetech.tienichmuasam.base.ListResponse;
-import com.beetech.tienichmuasam.entity.ListProductResponse;
-import com.beetech.tienichmuasam.entity.SearchResponse;
+import com.beetech.tienichmuasam.entity.response.ListProductResponse;
+import com.beetech.tienichmuasam.entity.response.SearchResponse;
 import com.beetech.tienichmuasam.network.ApiInterface;
 
 import javax.inject.Inject;

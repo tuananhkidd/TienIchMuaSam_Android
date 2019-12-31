@@ -1,10 +1,12 @@
-package com.beetech.tienichmuasam.entity;
+package com.beetech.tienichmuasam.entity.response;
 
+import android.text.Html;
 import android.widget.TextView;
 
 import androidx.databinding.BindingAdapter;
 
-import com.beetech.tienichmuasam.utils.NumberUtils;
+import com.beetech.tienichmuasam.BuildConfig;
+import com.beetech.tienichmuasam.R;
 import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
 
@@ -14,16 +16,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ListProductResponse {
 
-    @SerializedName("regular_price")
+    @SerializedName("price")
     private BigDecimal regularPrice;
 
-    @SerializedName("seller_price")
+    @SerializedName("priceDiscount")
     private BigDecimal sellerPrice;
 
-    @SerializedName("avatar_url")
+    @SerializedName("imagePath")
     private String avatarUrl;
 
-    @SerializedName("favourite_count")
+    @SerializedName("like")
     private int favouriteCount;
 
     @SerializedName("name")
@@ -31,6 +33,39 @@ public class ListProductResponse {
 
     @SerializedName("id")
     private String id;
+
+    @SerializedName("priceStr")
+    private String priceStr;
+
+    @SerializedName("priceDiscountStr")
+    private String priceDiscountStr;
+
+    @SerializedName("view")
+    private String view;
+
+    public String getView() {
+        return view;
+    }
+
+    public void setView(String view) {
+        this.view = view;
+    }
+
+    public String getPriceStr() {
+        return priceStr;
+    }
+
+    public void setPriceStr(String priceStr) {
+        this.priceStr = priceStr;
+    }
+
+    public String getPriceDiscountStr() {
+        return priceDiscountStr;
+    }
+
+    public void setPriceDiscountStr(String priceDiscountStr) {
+        this.priceDiscountStr = priceDiscountStr;
+    }
 
     public void setRegularPrice(BigDecimal regularPrice) {
         this.regularPrice = regularPrice;
@@ -81,19 +116,23 @@ public class ListProductResponse {
     }
 
     @BindingAdapter("android:price")
-    public static void showPrice(TextView tv, BigDecimal price) {
+    public static void showPrice(TextView tv, String price) {
         if (price != null) {
-            tv.setText(NumberUtils.fomartMoney(price));
+            tv.setText(Html.fromHtml("<del>" + price + "</del>"));
         }
     }
 
     @BindingAdapter({"android:image"})
     public static void loadImage(CircleImageView view, String avatarUrl) {
         Glide.with(view.getContext())
-                .load(avatarUrl)
+                .load(BuildConfig.IMAGE_URL + avatarUrl)
+//                .load(avatarUrl)
+                .placeholder(R.drawable.image_placeholder)
+                .error(R.drawable.image_placeholder)
                 .circleCrop()
                 .into(view);
     }
+
     @Override
     public String toString() {
         return

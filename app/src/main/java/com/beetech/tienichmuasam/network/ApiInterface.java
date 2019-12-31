@@ -2,8 +2,8 @@ package com.beetech.tienichmuasam.network;
 
 
 import com.beetech.tienichmuasam.base.ListResponse;
-import com.beetech.tienichmuasam.entity.ListProductResponse;
-import com.beetech.tienichmuasam.entity.SearchResponse;
+import com.beetech.tienichmuasam.entity.response.ListProductResponse;
+import com.beetech.tienichmuasam.entity.response.SearchResponse;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;

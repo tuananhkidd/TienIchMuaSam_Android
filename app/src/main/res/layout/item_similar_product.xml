@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.beetech.tienichmuasam.utils.TextViewUtil" />
+
+        <variable
+            name="product"
+            type="com.beetech.tienichmuasam.entity.response.ListProductResponse" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/margin_10dp"
+        android:paddingBottom="@dimen/margin_6dp"
+        android:orientation="vertical">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:image="@{product.avatarUrl}"
+            android:scaleType="centerCrop"
+            app:civ_border_color="@color/colorPrimary"
+            app:civ_border_width="@dimen/margin_2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_6dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:maxLines="2"
+            android:paddingStart="@dimen/margin_6dp"
+            android:paddingEnd="@dimen/margin_6dp"
+            android:text="@{product.name}"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_logo"
+            tools:text="Giay BoxAndCox" />
+
+        <TextView
+            android:id="@+id/tv_seller_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:text="@{product.priceDiscountStr}"
+            android:textColor="@color/price_active"
+            android:textSize="@dimen/text_size14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_product_name"
+            tools:text="100.000 đ" />
+
+        <TextView
+            android:id="@+id/tv_regular_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_6dp"
+            android:fontFamily="@font/lato_bold"
+            android:gravity="center"
+            android:text="@{TextViewUtil.getInActivePrice(product.priceDiscountStr)}"
+            android:textSize="@dimen/text_size10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_seller_price"
+            tools:text="100.000 đ" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

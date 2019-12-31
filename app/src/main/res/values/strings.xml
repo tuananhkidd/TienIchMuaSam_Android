@@ -14,6 +14,18 @@
     <string name="error_happened">Có lỗi xảy ra.Vui lòng thử lại</string>
     <string name="retry">Thử lại</string>
     <string name="type_your_message">Nhập nội dung</string>
+    <string name="selled">Đã bán</string>
+    <string name="free_to_return">Miễn phí trả hàng</string>
+    <string name="auth_product">Chính hãng 100%</string>
+    <string name="free_ship_title">Miễn phí vận chuyển</string>
+    <string name="free_ship_content">Miễn phí vận chuyển khi các đơn hàng đặt trong nội thành Hà Nội</string>
+    <string name="shipping_fee">Phí vận chuyển</string>
+    <string name="similar_product">Sản phẩm tương tự</string>
+    <string name="buy_now">Mua ngay</string>
+    <string name="view_all">Xem tất cả</string>
+    <string name="size_board">Bảng Quy Đổi Kích Cỡ</string>
+    <string name="quantity">Số lượng</string>
+    <string name="add_to_cart">Thêm vào giỏ hàng</string>
 
     <integer name="activity_anim_duration">300</integer>
 </resources>

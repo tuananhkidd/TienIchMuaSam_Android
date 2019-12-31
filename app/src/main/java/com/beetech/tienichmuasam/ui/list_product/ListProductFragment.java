@@ -9,9 +9,12 @@ import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.adapter.ListProductAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.databinding.ListProductFragmentBinding;
-import com.beetech.tienichmuasam.entity.ListProductResponse;
+import com.beetech.tienichmuasam.entity.response.ListProductResponse;
+import com.beetech.tienichmuasam.ui.product.DetaillProductFragment;
+import com.beetech.tienichmuasam.utils.Constant;
 import com.beetech.tienichmuasam.utils.DeviceUtil;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static com.beetech.tienichmuasam.utils.Constant.CATEGORY_ID;
@@ -42,6 +45,9 @@ public class ListProductFragment extends BaseFragment<ListProductFragmentBinding
         if (getActivity() != null) {
             binding.container.setPadding(0, DeviceUtil.getStatusBarHeight(getActivity()), 0, 0);
         }
+        binding.toolbar.setLeftListener(() -> {
+            getViewController().backFromAddFragment(null);
+        });
     }
 
     @Override
@@ -60,6 +66,9 @@ public class ListProductFragment extends BaseFragment<ListProductFragmentBinding
         binding.rcvListProduct.setOnRefreshListener(() -> mViewModel.getListProduct(true));
         binding.rcvListProduct.setOnItemClickListener((adapter, viewHolder, viewType, position) -> {
             ListProductResponse searchResponse = listProductAdapter.getItem(position, ListProductResponse.class);
+            HashMap<String,String> data = new HashMap<>();
+            data.put(Constant.PRODUCT_ID,searchResponse.getId());
+            getViewController().addFragment(DetaillProductFragment.class,data);
         });
         mViewModel.getListProduct(true);
         mViewModel.getListProducts().observe(getViewLifecycleOwner(),

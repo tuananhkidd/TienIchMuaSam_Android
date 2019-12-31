@@ -1,4 +1,4 @@
-package com.beetech.tienichmuasam.entity;
+package com.beetech.tienichmuasam.entity.response;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
