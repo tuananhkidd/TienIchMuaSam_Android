@@ -64,29 +64,26 @@
             </RelativeLayout>
 
 
-            <com.beetech.tienichmuasam.custom.InfinitiViewPager
+            <com.asksira.loopingviewpager.LoopingViewPager
                 android:id="@+id/vpHotNews"
                 android:layout_width="match_parent"
                 android:layout_height="152dp"
                 android:clipToPadding="false"
                 android:paddingLeft="@dimen/margin_20dp"
+                app:isInfinite="true"
+                app:autoScroll="true"
+                app:scrollInterval="5000"
                 android:paddingRight="@dimen/margin_20dp"
-                app:cycle="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_logo"
-                app:slideDuration="5000"
-                app:slideInterval="3000"
-                app:stopWhenTouch="false" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
 
-            <com.beetech.tienichmuasam.custom.CircleIndicator
+            <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/indicator"
                 android:layout_width="match_parent"
                 android:layout_height="12dp"
                 android:layout_marginTop="@dimen/margin_4dp"
                 app:ci_drawable="@drawable/bg_indicator_selected"
                 app:ci_drawable_unselected="@drawable/bg_indicator_unselected"
-                app:ci_height="5dp"
-                app:ci_width="5dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vpHotNews" />
 
@@ -99,8 +96,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvItems"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="418dp"
+                    android:layout_height="102dp"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"

@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.beetech.tienichmuasam.base.BaseViewModel;
 import com.beetech.tienichmuasam.base.ListLoadmoreReponse;
-import com.beetech.tienichmuasam.entity.SearchResponse;
+import com.beetech.tienichmuasam.entity.response.SearchResponse;
 import com.beetech.tienichmuasam.network.repository.Repository;
 
 import javax.inject.Inject;

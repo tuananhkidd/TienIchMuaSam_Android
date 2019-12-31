@@ -61,7 +61,7 @@ public class BaseToolbar extends RelativeLayout {
         tvTitle.setText(title);
         Drawable btnBackRs = a.getDrawable(R.styleable.BaseToolbar_bt_ic_left);
         btnBack.setImageDrawable(btnBackRs);
-        Drawable btnRightRs = a.getDrawable(R.styleable.BaseToolbar_bt_ic_left);
+        Drawable btnRightRs = a.getDrawable(R.styleable.BaseToolbar_bt_ic_right);
         Glide.with(context)
                 .load(btnRightRs)
                 .into(btnRight);

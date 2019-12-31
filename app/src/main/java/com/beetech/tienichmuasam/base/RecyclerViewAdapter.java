@@ -377,7 +377,9 @@ public abstract class RecyclerViewAdapter<T extends ViewDataBinding> extends Rec
 
     protected abstract RecyclerView.ViewHolder initNormalViewHolder(T binding, ViewGroup parent);
 
-    protected abstract RecyclerView.ViewHolder initNormalViewHolder(ViewGroup parent);
+    protected RecyclerView.ViewHolder initNormalViewHolder(ViewGroup parent){
+        return null;
+    }
 
     protected abstract void bindNormalViewHolder(NormalViewHolder holder, int position);
 

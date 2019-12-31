@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -26,6 +27,8 @@ import androidx.core.content.ContextCompat;
 
 import com.beetech.tienichmuasam.R;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
@@ -46,7 +49,22 @@ import java.util.StringTokenizer;
 
 public class Utils {
 
+    public static String readJsonFormAsset(Context context,String file){
+        AssetManager assetManager = context.getAssets();
+        String result = "";
+        try {
+            BufferedReader reader  =  new BufferedReader(new InputStreamReader(assetManager.open(file)));
 
+            String mLine;
+            while ((mLine = reader.readLine()) != null) {
+                result = result.concat(mLine);
+            }
+        }catch (Exception e){
+            return null;
+        }
+
+        return result;
+    }
     public static void saveSharePrefernce(Context context, String key, String value) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = preferences.edit();

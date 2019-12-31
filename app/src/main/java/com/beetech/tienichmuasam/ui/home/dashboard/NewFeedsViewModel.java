@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.base.BaseViewModel;
-import com.beetech.tienichmuasam.entity.BannerResponse;
-import com.beetech.tienichmuasam.entity.CategoryResponse;
+import com.beetech.tienichmuasam.entity.response.BannerResponse;
+import com.beetech.tienichmuasam.entity.response.CategoryResponse;
 
 import java.util.ArrayList;
 import java.util.List;

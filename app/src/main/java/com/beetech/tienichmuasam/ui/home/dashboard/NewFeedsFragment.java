@@ -65,6 +65,7 @@ public class NewFeedsFragment extends BaseFragment<FragmentNewFeedsBinding> {
             binding.vpHotNews.setOffscreenPageLimit(3);
             binding.vpHotNews.setPageTransformer(false, new CarouselEffectTransformer(getActivity())); // Set transformer
             binding.vpHotNews.setAdapter(newsFeedSlideAdapter);
+            binding.vpHotNews.resumeAutoScroll();
             binding.indicator.setViewPager(binding.vpHotNews);
         });
 

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.databinding.ItemHomeCategoryBinding;
-import com.beetech.tienichmuasam.entity.CategoryResponse;
+import com.beetech.tienichmuasam.entity.response.CategoryResponse;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,6 +6,7 @@ import com.beetech.tienichmuasam.ui.home.chat.ChatFragment;
 import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsFragment;
 import com.beetech.tienichmuasam.ui.home.search.SearchFragment;
 import com.beetech.tienichmuasam.ui.list_product.ListProductFragment;
+import com.beetech.tienichmuasam.ui.product.DetaillProductFragment;
 import com.beetech.tienichmuasam.ui.splash.SplashFragment;
 
 import dagger.Module;
@@ -29,6 +30,9 @@ public abstract class FragmentBindingModule {
 
     @ContributesAndroidInjector
     abstract ListProductFragment bindListProductFragment();
+
+    @ContributesAndroidInjector
+    abstract DetaillProductFragment bindDetailProductFragment();
 
     @ContributesAndroidInjector
     abstract ChatFragment bindChatFragment();

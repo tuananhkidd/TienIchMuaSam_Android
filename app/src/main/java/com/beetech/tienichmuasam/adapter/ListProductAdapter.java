@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.base.EndlessLoadingRecyclerViewAdapter;
 import com.beetech.tienichmuasam.databinding.ItemListProductBinding;
-import com.beetech.tienichmuasam.entity.ListProductResponse;
+import com.beetech.tienichmuasam.entity.response.ListProductResponse;
 
 public class ListProductAdapter extends EndlessLoadingRecyclerViewAdapter<ItemListProductBinding> {
 
@@ -22,11 +22,6 @@ public class ListProductAdapter extends EndlessLoadingRecyclerViewAdapter<ItemLi
     }
 
     @Override
-    protected RecyclerView.ViewHolder initNormalViewHolder(ViewGroup parent) {
-        return null;
-    }
-
-    @Override
     protected void bindNormalViewHolder(NormalViewHolder holder, int position) {
         ListProductViewHolder searchViewHolder = (ListProductViewHolder) holder;
         searchViewHolder.bind(getItem(position, ListProductResponse.class));
@@ -34,7 +29,7 @@ public class ListProductAdapter extends EndlessLoadingRecyclerViewAdapter<ItemLi
 
     @Override
     protected int getLayoutId() {
-        return R.layout.item_search;
+        return R.layout.item_list_product;
     }
 
     public class ListProductViewHolder extends NormalViewHolder<ListProductResponse> {

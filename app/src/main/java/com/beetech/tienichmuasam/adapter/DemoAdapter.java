@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.databinding.ItemSearchBinding;
-import com.beetech.tienichmuasam.entity.SearchResponse;
+import com.beetech.tienichmuasam.entity.response.SearchResponse;
 
 import java.util.ArrayList;
 import java.util.List;

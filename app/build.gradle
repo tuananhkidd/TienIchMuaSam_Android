@@ -30,6 +30,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField 'String', 'BASE_URL', '"http://192.168.2.248:7500/api/"'
+            buildConfigField 'String', 'IMAGE_URL', '"https://tienichmuasam.com"'
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         stage {
@@ -105,8 +106,8 @@ dependencies {
 
     implementation 'com.github.ibrahimsn98:SmoothBottomBar:1.6'
     // auto scroll viewpager
-    implementation 'com.github.demoNo:AutoScrollViewPager:v1.0.2'
     implementation 'me.relex:circleindicator:1.2.2'
+    implementation 'com.asksira.android:loopingviewpager:1.2.0'
     // Loading Image
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'

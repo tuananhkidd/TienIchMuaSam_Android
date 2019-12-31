@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#65A868</color>
     <color name="colorAccent">#D81B60</color>
     <color name="black">#000000</color>
+    <color name="price_active">#FF5722</color>
     <color name="black_text">#FF222222</color>
     <color name="white">#ffffff</color>
     <color name="gray">#E5E5E5</color>
