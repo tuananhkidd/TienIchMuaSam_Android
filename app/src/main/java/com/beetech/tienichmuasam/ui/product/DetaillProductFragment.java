@@ -11,6 +11,7 @@ import com.beetech.tienichmuasam.adapter.SimilarProductAdapter;
 import com.beetech.tienichmuasam.adapter.viewpager.DetailSlideImagePagerAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.custom.behavior.RecyclerViewLinearSnapHelper;
+import com.beetech.tienichmuasam.custom.dialog.SelectProductDialog;
 import com.beetech.tienichmuasam.databinding.DetaillProductFragmentBinding;
 import com.beetech.tienichmuasam.entity.response.DetailProductResponse;
 import com.beetech.tienichmuasam.utils.Constant;
@@ -50,6 +51,10 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
             mViewModel.setProductId(bundle.getString(Constant.PRODUCT_ID));
             mViewModel.getDetailProduct();
         }
+
+        binding.btnBack.setOnClickListener(v->{
+            getViewController().backFromAddFragment(null);
+        });
     }
 
     @Override
@@ -84,6 +89,7 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
                 }
             });
             //endregion
+
             //region simiar product
             SimilarProductAdapter similarProductAdapter = new SimilarProductAdapter(getContext());
             similarProductAdapter.addModels(detailProductResponse.getSimilarProducts(), false);
@@ -91,8 +97,26 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
             RecyclerViewLinearSnapHelper snapHelper = new RecyclerViewLinearSnapHelper();
             snapHelper.attachToRecyclerView(binding.rcvSimilarProduct);
             //endregion
+
+            //region click
+            binding.btnAddCart.setOnClickListener(v->{
+                showSelectProductDialog(detailProductResponse);
+            });
+
+            binding.btnAdd.setOnClickListener(v->{
+                showSelectProductDialog(detailProductResponse);
+            });
+            //endregion
             //fixme check favourite product
+
+
         }
     }
 
+    private void showSelectProductDialog(DetailProductResponse detailProductResponse){
+        SelectProductDialog selectProductDialog = new SelectProductDialog(getContext(),detailProductResponse);
+        selectProductDialog.initData(detailProductResponse.getSizes(),detailProductResponse.getColors());
+        selectProductDialog.setCancelable(true);
+        selectProductDialog.show();
+    }
 }

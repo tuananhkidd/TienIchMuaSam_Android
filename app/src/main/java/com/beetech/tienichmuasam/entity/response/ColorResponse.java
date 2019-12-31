@@ -8,6 +8,15 @@ public class ColorResponse {
     private String name;
     private String imagePath;
     private String sizeIds;
+    private boolean isSelected;
+
+    public boolean getIsSelected() {
+        return isSelected;
+    }
+
+    public void setIsSelected(boolean isSelected) {
+        this.isSelected = isSelected;
+    }
 
     public String getColorId() {
         return colorId;
@@ -44,7 +53,7 @@ public class ColorResponse {
     public List<SizeResponse> getListSizes(List<SizeResponse> data) {
         List<SizeResponse> filters = new ArrayList<>();
         for (SizeResponse sizeResponse : data) {
-            if(sizeIds.contains(sizeResponse.getName())) {
+            if(sizeIds.contains(sizeResponse.getSizeId())) {
                 filters.add(sizeResponse);
             }
         }
