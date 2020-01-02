@@ -3,15 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/bg_quantity_selected"
-    android:padding="@dimen/margin_8dp">
+    android:layout_height="@dimen/margin_30dp"
+    android:background="@drawable/bg_quantity_selected">
 
     <ImageView
         android:id="@+id/btn_remove"
         android:layout_width="18dp"
         android:layout_height="18dp"
         android:src="@drawable/ic_remove"
+        android:layout_marginStart="@dimen/margin_6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/md_black_1000"
         android:textSize="@dimen/text_size16"
+        android:fontFamily="@font/lato_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_add"
+        android:tint="@color/black"
+        android:layout_marginEnd="@dimen/margin_6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

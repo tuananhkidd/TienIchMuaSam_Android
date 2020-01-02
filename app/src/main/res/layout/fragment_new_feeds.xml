@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.core.widget.NestedScrollView
-        android:background="@color/white"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"
@@ -15,7 +15,6 @@
             tools:context="com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsFragment">
 
             <TextView
-                android:fontFamily="@font/lato_bold"
                 android:id="@+id/tv_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -23,6 +22,7 @@
                 android:ellipsize="marquee"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
+                android:fontFamily="@font/lato_bold"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
                 android:text="Nhanh chân đến với gian hàng của Tiệc ích mua sắm để nhận được những ưu đãi bất ngờ!"
@@ -38,27 +38,29 @@
                 android:src="@drawable/ic_logo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_top" />
+
             <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/iv_logo"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/iv_logo"
-                android:layout_margin="@dimen/margin_16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                app:layout_constraintTop_toTopOf="@+id/iv_logo">
+
                 <ImageView
                     android:id="@+id/btn_cart"
                     android:layout_width="@dimen/margin_48dp"
                     android:layout_height="@dimen/margin_48dp"
-                    android:src="@drawable/ic_cart"/>
+                    android:src="@drawable/ic_cart" />
 
                 <com.beetech.tienichmuasam.custom.NotificationBadge
-                    android:layout_alignTop="@id/btn_cart"
-                    android:layout_alignEnd="@id/btn_cart"
                     android:id="@+id/btn_total"
                     android:layout_width="28dp"
                     android:layout_height="28dp"
-                    android:textColor="@color/colorPrimary"
+                    android:layout_alignTop="@id/btn_cart"
+                    android:layout_alignEnd="@id/btn_cart"
                     android:layout_marginStart="@dimen/margin_10dp"
+                    android:textColor="@color/colorPrimary"
                     app:nbBackground="@drawable/badge_bg_with_shadow"
                     app:nbMaxTextLength="2" />
             </RelativeLayout>
@@ -70,12 +72,12 @@
                 android:layout_height="152dp"
                 android:clipToPadding="false"
                 android:paddingLeft="@dimen/margin_20dp"
-                app:isInfinite="true"
-                app:autoScroll="true"
-                app:scrollInterval="5000"
                 android:paddingRight="@dimen/margin_20dp"
+                app:autoScroll="true"
+                app:isInfinite="true"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+                app:layout_constraintTop_toBottomOf="@+id/iv_logo"
+                app:scrollInterval="5000" />
 
             <me.relex.circleindicator.CircleIndicator
                 android:id="@+id/indicator"
@@ -88,16 +90,16 @@
                 app:layout_constraintTop_toBottomOf="@id/vpHotNews" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_marginTop="@dimen/margin_4dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/margin_4dp"
                 android:background="@drawable/bg_home_round"
                 app:layout_constraintTop_toBottomOf="@+id/indicator">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvItems"
-                    android:layout_width="418dp"
-                    android:layout_height="102dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"

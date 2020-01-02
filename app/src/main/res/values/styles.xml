@@ -29,4 +29,9 @@
         <item name="android:textColor">#FF323B42</item>
         <item name="android:fontFamily">@font/lato_bold</item>
     </style>
+
+    <style name="ImageDetailDialogStyle">
+        <item name="android:windowEnterAnimation"> @anim/scale_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_out</item>
+    </style>
 </resources>

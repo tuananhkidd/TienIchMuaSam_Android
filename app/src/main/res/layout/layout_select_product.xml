@@ -110,10 +110,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/layout_size" />
 
-            <include
-                layout="@layout/layout_change_quantity"
+            <com.beetech.tienichmuasam.custom.QuantitySelectedCustomView
+                android:id="@+id/quantity_change"
+                app:qs_default_items="1"
                 android:layout_width="100dp"
-                android:layout_height="24dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="@dimen/margin_10dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_quantity_title"
                 app:layout_constraintEnd_toEndOf="parent"

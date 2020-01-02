@@ -28,7 +28,11 @@ public class SelectProductDialog extends BottomSheetDialog {
     private int currentSizeIndex = -1;
     private int currentColorIndex = -1;
     private DetailProductResponse detailProductResponse;
+    private OnClickChooseSizeListener onClickChooseSizeListener;
 
+    public void setOnClickChooseSizeListener(OnClickChooseSizeListener onClickChooseSizeListener) {
+        this.onClickChooseSizeListener = onClickChooseSizeListener;
+    }
 
     public SelectProductDialog(@NonNull Context context, DetailProductResponse detailProductResponse) {
         super(context);
@@ -51,6 +55,12 @@ public class SelectProductDialog extends BottomSheetDialog {
         binding.btnBack.setOnClickListener(v -> {
             hide();
         });
+
+        binding.tvChooseSize.setOnClickListener(v->{
+            if(onClickChooseSizeListener!=null){
+                onClickChooseSizeListener.onClickChooseSize("https://tienichmuasam.com/img/product/HuongDanChonSize.png");
+            }
+        });
     }
 
     public void initData(List<SizeResponse> sizes, List<ColorResponse> colors) {
@@ -68,16 +78,17 @@ public class SelectProductDialog extends BottomSheetDialog {
                 sizeResponse.setSelected(false);
             }
             binding.layoutSize.setVisibility(View.VISIBLE);
-            SizeAdapter sizeAdapter = new SizeAdapter(getContext(), colors.get(position).getListSizes(sizes));
+            List<SizeResponse> sizeFilters = colors.get(position).getListSizes(sizes);
+            SizeAdapter sizeAdapter = new SizeAdapter(getContext(), sizeFilters);
             binding.rcVSize.setAdapter(sizeAdapter);
 
             sizeAdapter.setListener(pos -> {
                 if (currentSizeIndex != -1) {
-                    sizes.get(currentSizeIndex).setSelected(false);
+                    sizeFilters.get(currentSizeIndex).setSelected(false);
                     sizeAdapter.notifyItemChanged(currentSizeIndex);
                 }
                 currentSizeIndex = pos;
-                sizes.get(currentSizeIndex).setSelected(true);
+                sizeFilters.get(currentSizeIndex).setSelected(true);
                 sizeAdapter.notifyItemChanged(currentSizeIndex);
             });
             if (currentColorIndex != -1) {
@@ -88,5 +99,9 @@ public class SelectProductDialog extends BottomSheetDialog {
             colors.get(currentColorIndex).setIsSelected(true);
             colorAdapter.notifyItemChanged(currentColorIndex);
         });
+    }
+
+    public interface OnClickChooseSizeListener{
+        void onClickChooseSize(String path);
     }
 }

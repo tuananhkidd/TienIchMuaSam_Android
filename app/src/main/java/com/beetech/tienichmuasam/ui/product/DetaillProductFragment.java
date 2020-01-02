@@ -18,6 +18,7 @@ import com.beetech.tienichmuasam.adapter.viewpager.DetailSlideImagePagerAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.base.EndlessLoadingRecyclerViewAdapter;
 import com.beetech.tienichmuasam.custom.behavior.RecyclerViewLinearSnapHelper;
+import com.beetech.tienichmuasam.custom.dialog.ImageDetailDialog;
 import com.beetech.tienichmuasam.custom.dialog.SelectProductDialog;
 import com.beetech.tienichmuasam.databinding.DetaillProductFragmentBinding;
 import com.beetech.tienichmuasam.entity.response.DetailProductResponse;
@@ -81,19 +82,19 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
 
         binding.nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
             //0->~400
-            float percent =(float) scrollY / binding.vpImage.getHeight();
-            Log.v("ahuhu","offset : "+percent);
+            float percent = (float) scrollY / binding.vpImage.getHeight();
+            Log.v("ahuhu", "offset : " + percent);
             if (percent > 1) {
                 percent = 1;
                 binding.btnBack.setImageResource(R.drawable.ic_back);
                 binding.btnShare.setImageResource(R.drawable.ic_share);
-                binding.btnCart.setImageResource(R.drawable.ic_back);
-                binding.btnCart.setColorFilter(ContextCompat.getColor(getContext(),R.color.white));
-            }else {
+                binding.btnCart.setImageResource(R.drawable.ic_cart);
+                binding.btnCart.setColorFilter(ContextCompat.getColor(getContext(), R.color.white));
+            } else {
                 binding.btnBack.setImageResource(R.drawable.ic_back_bg);
                 binding.btnShare.setImageResource(R.drawable.ic_share);
                 binding.btnCart.setImageResource(R.drawable.ic_cart);
-                binding.btnCart.setColorFilter(ContextCompat.getColor(getContext(),R.color.white));
+                binding.btnCart.setColorFilter(ContextCompat.getColor(getContext(), R.color.white));
             }
             binding.tvProduct.setAlpha(percent);
             binding.viewBackground.setAlpha(percent);
@@ -161,6 +162,13 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
         SelectProductDialog selectProductDialog = new SelectProductDialog(getContext(), detailProductResponse);
         selectProductDialog.initData(detailProductResponse.getSizes(), detailProductResponse.getColors());
         selectProductDialog.setCancelable(true);
+        selectProductDialog.setOnClickChooseSizeListener(path -> {
+            ImageDetailDialog imageDetailDialog = new ImageDetailDialog();
+            Bundle bundle = new Bundle();
+            bundle.putString(Constant.IMAGE_DETAIL, path);
+            imageDetailDialog.setArguments(bundle);
+            imageDetailDialog.show(getChildFragmentManager(), imageDetailDialog.getTag());
+        });
         selectProductDialog.show();
     }
 
