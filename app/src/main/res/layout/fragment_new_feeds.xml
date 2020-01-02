@@ -96,8 +96,8 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvItems"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="418dp"
+                    android:layout_height="102dp"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
