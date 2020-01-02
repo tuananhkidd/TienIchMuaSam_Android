@@ -359,17 +359,23 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
+
+                <View
+                    android:id="@+id/view_background"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0"
+                    android:background="@color/colorPrimary" />
 
                 <ImageView
                     android:id="@+id/btn_back"
                     android:layout_width="?attr/actionBarSize"
                     android:layout_height="?attr/actionBarSize"
                     android:padding="@dimen/margin_8dp"
-                    android:src="@drawable/ic_back" />
+                    android:src="@drawable/ic_back_bg" />
 
                 <ImageView
                     android:id="@+id/btn_share"
@@ -380,10 +386,12 @@
                     android:src="@drawable/ic_share" />
 
                 <TextView
+                    android:id="@+id/tv_product"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_toStartOf="@id/btn_share"
                     android:layout_toEndOf="@id/btn_back"
+                    android:alpha="0"
                     android:ellipsize="end"
                     android:fontFamily="@font/philosopher_bold"
                     android:gravity="center_vertical"

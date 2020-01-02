@@ -1,11 +1,13 @@
 package com.beetech.tienichmuasam.ui.product;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
+import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
@@ -75,6 +77,27 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
         mViewModel.getDetail().observe(getViewLifecycleOwner(), detailProductResponseObjectResponse -> {
             binding.setDetail(detailProductResponseObjectResponse.getData());
             loadData(detailProductResponseObjectResponse.getData());
+        });
+
+        binding.nestedScrollView.setOnScrollChangeListener((NestedScrollView.OnScrollChangeListener) (v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            //0->~400
+            float percent =(float) scrollY / binding.vpImage.getHeight();
+            Log.v("ahuhu","offset : "+percent);
+            if (percent > 1) {
+                percent = 1;
+                binding.btnBack.setImageResource(R.drawable.ic_back);
+                binding.btnShare.setImageResource(R.drawable.ic_share);
+                binding.btnCart.setImageResource(R.drawable.ic_back);
+                binding.btnCart.setColorFilter(ContextCompat.getColor(getContext(),R.color.white));
+            }else {
+                binding.btnBack.setImageResource(R.drawable.ic_back_bg);
+                binding.btnShare.setImageResource(R.drawable.ic_share);
+                binding.btnCart.setImageResource(R.drawable.ic_cart);
+                binding.btnCart.setColorFilter(ContextCompat.getColor(getContext(),R.color.white));
+            }
+            binding.tvProduct.setAlpha(percent);
+            binding.viewBackground.setAlpha(percent);
+
         });
     }
 

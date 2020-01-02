@@ -62,7 +62,7 @@ public class DetaillProductViewModel extends BaseViewModel {
             "  \"createdDate\":\"12/12/2019\",\n" +
             "  \"content\":\"Món hàng rất đẹp,Ahuhu!\",\n" +
             "  \"rating\":4.0,\n" +
-            "  \"userAvatar\":\"http://api-staging.timdatxe.com//uploads/shares/14_400.jpg\",\n" +
+            "  \"userAvatar\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkJwJD-KnYOYHuWNTV1WDbwD_BHyxGDbqMi5kvJ05220IcaT52qw&s\",\n" +
             "  \"userName\":\"Tuan Anh Kidd\"\n" +
             "},\n" +
             "{\n" +
@@ -89,7 +89,7 @@ public class DetaillProductViewModel extends BaseViewModel {
             "  \"createdDate\":\"12/12/2019\",\n" +
             "  \"content\":\"Món hàng rất đẹp,Ahuhu!\",\n" +
             "  \"rating\":3.5,\n" +
-            "  \"userAvatar\":\"http://api-staging.timdatxe.com//uploads/shares/14_400.jpg\",\n" +
+            "  \"userAvatar\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkJwJD-KnYOYHuWNTV1WDbwD_BHyxGDbqMi5kvJ05220IcaT52qw&s\",\n" +
             "  \"userName\":\"Tuan Anh Kidd\"\n" +
             "}\n" +
             ",\n" +
@@ -99,7 +99,7 @@ public class DetaillProductViewModel extends BaseViewModel {
             "  \"createdDate\":\"12/12/2019\",\n" +
             "  \"content\":\"Món hàng rất đẹp,Ahuhu!\",\n" +
             "  \"rating\":3.5,\n" +
-            "  \"userAvatar\":\"http://api-staging.timdatxe.com//uploads/shares/14_400.jpg\",\n" +
+            "  \"userAvatar\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkJwJD-KnYOYHuWNTV1WDbwD_BHyxGDbqMi5kvJ05220IcaT52qw&s\",\n" +
             "  \"userName\":\"Tuan Anh Kidd\"\n" +
             "}\n" +
             ",\n" +
@@ -109,7 +109,7 @@ public class DetaillProductViewModel extends BaseViewModel {
             "  \"createdDate\":\"12/12/2019\",\n" +
             "  \"content\":\"Món hàng rất đẹp,Ahuhu!\",\n" +
             "  \"rating\":3.5,\n" +
-            "  \"userAvatar\":\"http://api-staging.timdatxe.com//uploads/shares/14_400.jpg\",\n" +
+            "  \"userAvatar\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkJwJD-KnYOYHuWNTV1WDbwD_BHyxGDbqMi5kvJ05220IcaT52qw&s\",\n" +
             "  \"userName\":\"Tuan Anh Kidd\"\n" +
             "}\n" +
             ",\n" +
@@ -119,7 +119,7 @@ public class DetaillProductViewModel extends BaseViewModel {
             "  \"createdDate\":\"12/12/2019\",\n" +
             "  \"content\":\"Món hàng rất đẹp,Ahuhu!\",\n" +
             "  \"rating\":3.5,\n" +
-            "  \"userAvatar\":\"http://api-staging.timdatxe.com//uploads/shares/14_400.jpg\",\n" +
+            "  \"userAvatar\":\"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkJwJD-KnYOYHuWNTV1WDbwD_BHyxGDbqMi5kvJ05220IcaT52qw&s\",\n" +
             "  \"userName\":\"Tuan Anh Kidd\"\n" +
             "}\n" +
             "]";

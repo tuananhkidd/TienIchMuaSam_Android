@@ -21,7 +21,6 @@
                 android:id="@+id/img_avatar"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:image="@{comment.userAvatar}"
                 app:civ_border_color="@color/white"
                 app:civ_border_width="@dimen/margin_2dp"
                 app:layout_constraintStart_toStartOf="parent"
