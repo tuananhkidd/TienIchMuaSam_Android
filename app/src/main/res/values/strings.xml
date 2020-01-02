@@ -26,6 +26,7 @@
     <string name="size_board">Bảng Quy Đổi Kích Cỡ</string>
     <string name="quantity">Số lượng</string>
     <string name="add_to_cart">Thêm vào giỏ hàng</string>
+    <string name="no_comment">Chưa có đánh giá</string>
 
     <integer name="activity_anim_duration">300</integer>
 </resources>

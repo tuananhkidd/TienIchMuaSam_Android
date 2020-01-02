@@ -42,9 +42,6 @@ public class ListProductFragment extends BaseFragment<ListProductFragmentBinding
 
     @Override
     public void initView() {
-        if (getActivity() != null) {
-            binding.container.setPadding(0, DeviceUtil.getStatusBarHeight(getActivity()), 0, 0);
-        }
         binding.toolbar.setLeftListener(() -> {
             getViewController().backFromAddFragment(null);
         });

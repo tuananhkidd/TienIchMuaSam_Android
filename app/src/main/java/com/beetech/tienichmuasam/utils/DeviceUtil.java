@@ -97,4 +97,13 @@ public class DeviceUtil {
         }
         return result;
     }
+
+    public static void showSoftKeyboard(Activity activity) {
+        if (activity != null && activity.getWindow() != null) {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (imm != null) {
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+            }
+        }
+    }
 }

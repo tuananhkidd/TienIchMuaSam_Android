@@ -1,26 +1,36 @@
 package com.beetech.tienichmuasam.ui.product;
 
 import android.os.Bundle;
+import android.view.View;
+import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.beetech.tienichmuasam.R;
+import com.beetech.tienichmuasam.adapter.CommentAdapter;
 import com.beetech.tienichmuasam.adapter.SimilarProductAdapter;
 import com.beetech.tienichmuasam.adapter.viewpager.DetailSlideImagePagerAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
+import com.beetech.tienichmuasam.base.EndlessLoadingRecyclerViewAdapter;
 import com.beetech.tienichmuasam.custom.behavior.RecyclerViewLinearSnapHelper;
 import com.beetech.tienichmuasam.custom.dialog.SelectProductDialog;
 import com.beetech.tienichmuasam.databinding.DetaillProductFragmentBinding;
 import com.beetech.tienichmuasam.entity.response.DetailProductResponse;
 import com.beetech.tienichmuasam.utils.Constant;
 import com.beetech.tienichmuasam.utils.DeviceUtil;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
 
-public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentBinding> {
+import java.util.List;
+
+public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentBinding> implements EndlessLoadingRecyclerViewAdapter.OnLoadingMoreListener {
 
     private DetaillProductViewModel mViewModel;
     private DetailSlideImagePagerAdapter detailSlideImagePagerAdapter;
+    BottomSheetBehavior sheetBehavior;
+    private CommentAdapter commentAdapter;
 
     @Override
     protected int getLayoutId() {
@@ -34,7 +44,13 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
 
     @Override
     public boolean backPressed() {
-        getViewController().backFromAddFragment(null);
+        if (sheetBehavior != null) {
+            if (sheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+            } else {
+                getViewController().backFromAddFragment(null);
+            }
+        }
         return false;
     }
 
@@ -42,19 +58,16 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
     public void initView() {
         mViewModel = ViewModelProviders.of(this, viewModelFactory).get(DetaillProductViewModel.class);
 
-        ConstraintLayout.LayoutParams layoutParams = (ConstraintLayout.LayoutParams) binding.toolbar.getLayoutParams();
-        if (getActivity() != null) {
-            layoutParams.topMargin = DeviceUtil.getStatusBarHeight(getActivity());
-        }
         Bundle bundle = getArguments();
         if (bundle != null) {
             mViewModel.setProductId(bundle.getString(Constant.PRODUCT_ID));
             mViewModel.getDetailProduct();
         }
 
-        binding.btnBack.setOnClickListener(v->{
+        binding.btnBack.setOnClickListener(v -> {
             getViewController().backFromAddFragment(null);
         });
+        initLayoutComment();
     }
 
     @Override
@@ -99,24 +112,93 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
             //endregion
 
             //region click
-            binding.btnAddCart.setOnClickListener(v->{
+            binding.btnAddCart.setOnClickListener(v -> {
                 showSelectProductDialog(detailProductResponse);
             });
 
-            binding.btnAdd.setOnClickListener(v->{
+            binding.btnAdd.setOnClickListener(v -> {
                 showSelectProductDialog(detailProductResponse);
             });
             //endregion
             //fixme check favourite product
 
 
+            binding.btnCmt.setOnClickListener(v -> {
+                if (sheetBehavior.getState() != BottomSheetBehavior.STATE_EXPANDED) {
+                    mViewModel.getCommentsAboutProduct(true);
+                    if (sheetBehavior != null) {
+                        sheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+                    }
+                }
+            });
         }
     }
 
-    private void showSelectProductDialog(DetailProductResponse detailProductResponse){
-        SelectProductDialog selectProductDialog = new SelectProductDialog(getContext(),detailProductResponse);
-        selectProductDialog.initData(detailProductResponse.getSizes(),detailProductResponse.getColors());
+    private void showSelectProductDialog(DetailProductResponse detailProductResponse) {
+        SelectProductDialog selectProductDialog = new SelectProductDialog(getContext(), detailProductResponse);
+        selectProductDialog.initData(detailProductResponse.getSizes(), detailProductResponse.getColors());
         selectProductDialog.setCancelable(true);
         selectProductDialog.show();
+    }
+
+    private void initLayoutComment() {
+        sheetBehavior = BottomSheetBehavior.from(binding.layoutComment);
+        commentAdapter = new CommentAdapter(getContext());
+        sheetBehavior.setHideable(true);
+        sheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        binding.rcvCmt.setAdapter(commentAdapter);
+        commentAdapter.setLoadingMoreListener(this);
+
+        sheetBehavior.addBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
+            @Override
+            public void onStateChanged(@NonNull View bottomSheet, int newState) {
+                switch (newState) {
+                    case BottomSheetBehavior.STATE_HIDDEN:
+                        if (getActivity() != null) {
+                            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+                        }
+                        break;
+                    case BottomSheetBehavior.STATE_EXPANDED: {
+                        if (getActivity() != null) {
+                            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+                        }
+                    }
+                    break;
+                    case BottomSheetBehavior.STATE_COLLAPSED: {
+                        if (getActivity() != null) {
+                            DeviceUtil.hideSoftKeyboard(getActivity());
+                            getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
+                        }
+                    }
+                    break;
+                }
+            }
+
+            @Override
+            public void onSlide(@NonNull View bottomSheet, float slideOffset) {
+
+            }
+        });
+
+        mViewModel.getComments().observe(this, commentResponseListLoadmoreReponse -> {
+            handleLoadMoreResponse(commentResponseListLoadmoreReponse, commentResponseListLoadmoreReponse.isRefresh(), commentResponseListLoadmoreReponse.isCanLoadmore());
+        });
+    }
+
+    @Override
+    protected void getListResponse(List<?> data, boolean isRefresh, boolean canLoadmore) {
+        commentAdapter.enableLoadingMore(canLoadmore);
+        if (isRefresh) {
+            commentAdapter.refresh(data);
+        } else {
+            commentAdapter.hideLoadingItem();
+            commentAdapter.addModels(data, false);
+        }
+    }
+
+    @Override
+    public void onLoadMore() {
+        commentAdapter.showLoadingItem(true);
+        mViewModel.getCommentsAboutProduct(false);
     }
 }

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="comment"
+            type="com.beetech.tienichmuasam.entity.response.CommentResponse" />
+    </data>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_10dp">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:image="@{comment.userAvatar}"
+                app:civ_border_color="@color/white"
+                app:civ_border_width="@dimen/margin_2dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/image_placeholder" />
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/lato_bold"
+                android:maxLines="1"
+                android:text="@{comment.userName}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size16"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_avatar"
+                app:layout_constraintTop_toTopOf="@+id/img_avatar"
+                tools:text="Tuan Anh Kidd" />
+
+            <TextView
+                android:id="@+id/tv_comment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:layout_marginTop="@dimen/margin_6dp"
+                android:fontFamily="@font/lato_regular"
+                android:text="@{comment.content}"
+                android:textColor="#807E7E"
+                android:textSize="@dimen/text_size14"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/img_avatar"
+                app:layout_constraintTop_toBottomOf="@id/tv_user_name"
+                tools:text="Tuan Anh Kidd" />
+
+            <me.zhanghai.android.materialratingbar.MaterialRatingBar
+                android:id="@+id/rating"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="@dimen/margin_6dp"
+                android:isIndicator="true"
+                android:rating="@{comment.rating}"
+                app:layout_constraintStart_toStartOf="@+id/tv_comment"
+                app:layout_constraintTop_toBottomOf="@+id/tv_comment" />
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:fontFamily="@font/lato_regular"
+                android:text="@{comment.createdDate}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rating"
+                tools:text="10/10/2019" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/margin_12dp"
+                android:background="@color/gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

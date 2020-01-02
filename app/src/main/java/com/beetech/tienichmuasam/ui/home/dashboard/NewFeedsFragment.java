@@ -49,9 +49,6 @@ public class NewFeedsFragment extends BaseFragment<FragmentNewFeedsBinding> {
     @Override
     public void initView() {
         binding.tvTop.setSelected(true);
-        if (getActivity() != null) {
-            binding.container.setPadding(0, DeviceUtil.getStatusBarHeight(getActivity()), 0, 0);
-        }
         binding.btnTotal.setNumber(6,true);
     }
 
