@@ -1,7 +1,9 @@
 package com.beetech.tienichmuasam.ui.home.search;
 
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -15,6 +17,7 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -48,6 +51,8 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
     private SpeechRecognizer speech = null;
     private Intent recognizerIntent;
     private ListProductAdapter listProductAdapter;
+
+    public static final int REQUEST_PERMISSION_RECORD_CODE = 1111;
 
     public SearchFragment() {
     }
@@ -94,17 +99,36 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
 
         binding.searchView.setOnSearchKeyBoardListener((textView, actionId, keyEvent) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                searchViewModel.search(binding.searchView.getSearchText(),true);
+                searchViewModel.search(binding.searchView.getSearchText(), true);
                 return true;
             }
             return false;
         }).setOnClickSearchListener(view -> {
-            searchViewModel.search(binding.searchView.getSearchText(),true);
+            searchViewModel.search(binding.searchView.getSearchText(), true);
         }).setOnClickRecordListener(v -> {
-            //fixme check permission record
-            startRecord();
+            if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.RECORD_AUDIO}, REQUEST_PERMISSION_RECORD_CODE);
+            } else {
+                startRecord();
+            }
         });
 
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_PERMISSION_RECORD_CODE: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    startRecord();
+                } else {
+                    Toast.makeText(getContext(), "Permission Record Deny", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            }
+        }
     }
 
     //region record
@@ -240,17 +264,17 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
         binding.rcvSuggest.setAdapter(suggestAdapter);
     }
 
-    private void initSearch(){
+    private void initSearch() {
         listProductAdapter = new ListProductAdapter(getContext());
         binding.rcvSearch.setListLayoutManager(LinearLayoutManager.VERTICAL);
         binding.rcvSearch.setAdapter(listProductAdapter);
-        binding.rcvSearch.setOnLoadingMoreListener(() -> searchViewModel.search(binding.searchView.getSearchText(),false));
+        binding.rcvSearch.setOnLoadingMoreListener(() -> searchViewModel.search(binding.searchView.getSearchText(), false));
 
         binding.rcvSearch.setOnItemClickListener((adapter, viewHolder, viewType, position) -> {
             ListProductResponse searchResponse = listProductAdapter.getItem(position, ListProductResponse.class);
-            HashMap<String,String> data = new HashMap<>();
-            data.put(Constant.PRODUCT_ID,searchResponse.getId());
-            getViewController().addFragment(DetaillProductFragment.class,data);
+            HashMap<String, String> data = new HashMap<>();
+            data.put(Constant.PRODUCT_ID, searchResponse.getId());
+            getViewController().addFragment(DetaillProductFragment.class, data);
         });
         searchViewModel.getSearch().observe(getViewLifecycleOwner(),
                 searchResponseListResponse -> handleLoadMoreResponse(searchResponseListResponse, searchResponseListResponse.isRefresh(), searchResponseListResponse.isCanLoadmore()));
