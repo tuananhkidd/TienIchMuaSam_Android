@@ -21,6 +21,7 @@
     <dimen name="margin_32dp">32dp</dimen>
     <dimen name="margin_40dp">40dp</dimen>
     <dimen name="margin_48dp">48dp</dimen>
+    <dimen name="margin_60dp">60dp</dimen>
 
     <!--text size-->
     <dimen name="text_size10">10sp</dimen>
@@ -38,4 +39,5 @@
     <dimen name="edit_text_max_width">280dp</dimen>
     <dimen name="edit_text_padding">10dp</dimen>
     <dimen name="margin_50dp">50dp</dimen>
+    <dimen name="_dp107">107dp</dimen>
 </resources>

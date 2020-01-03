@@ -70,4 +70,9 @@
         <attr name="qs_max_items" format="integer" />
         <attr name="qs_default_items" format="integer" />
     </declare-styleable>
+
+    <declare-styleable name="SearchView">
+        <attr name="sv_show_record" format="boolean"/>
+        <attr name="sv_hint" format="string|reference"/>
+    </declare-styleable>
 </resources>

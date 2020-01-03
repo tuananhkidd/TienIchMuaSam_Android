@@ -23,11 +23,13 @@ public abstract class CustomViewConstraintLayout extends ConstraintLayout {
 
     public CustomViewConstraintLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.attrs = attrs;
         init();
     }
 
     public CustomViewConstraintLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.attrs = attrs;
         init();
     }
 

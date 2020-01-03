@@ -176,6 +176,10 @@ public class ClearableEditText extends RelativeLayout implements View.OnClickLis
         editText.setFocusable(true);
     }
 
+    public void setHint(String hint){
+        editText.setHint(hint);
+    }
+
     public String getText() {
         return editText.getText().toString();
     }
@@ -266,5 +270,9 @@ public class ClearableEditText extends RelativeLayout implements View.OnClickLis
 
     public interface OnEditTextClickListener {
         void onEditTextClick(View view);
+    }
+
+    public TextInputEditText getEditText() {
+        return editText;
     }
 }

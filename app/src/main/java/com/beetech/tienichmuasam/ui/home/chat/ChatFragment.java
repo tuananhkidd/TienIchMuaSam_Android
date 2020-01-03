@@ -70,7 +70,7 @@ public class ChatFragment extends BaseFragment<ChatFragmentBinding> implements E
 //        mViewModel.getMessages(true, 10);
     }
 
-    private void initListener() {
+    public void initListener() {
         mViewModel.registerFriendTypingListener("cd6fc031-4a31-433d-a0b4-a5fc3b2fb528");
         mViewModel.registerOnMessageChangedListener("", 14);
 

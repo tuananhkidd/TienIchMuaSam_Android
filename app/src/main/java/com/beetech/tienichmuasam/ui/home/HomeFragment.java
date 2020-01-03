@@ -1,5 +1,7 @@
 package com.beetech.tienichmuasam.ui.home;
 
+import android.view.WindowManager;
+
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
@@ -58,6 +60,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding> {
             }
         });
 
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         binding.bottomBar.setOnItemSelectedListener(i -> binding.vpHome.setCurrentItem(i));
 
     }

@@ -27,6 +27,8 @@
     <string name="quantity">Số lượng</string>
     <string name="add_to_cart">Thêm vào giỏ hàng</string>
     <string name="no_comment">Chưa có đánh giá</string>
+    <string name="what_do_you_want_to_search">Bạn đang tìm kiếm gì?</string>
+    <string name="stop_speak">Dừng</string>
 
     <integer name="activity_anim_duration">300</integer>
 </resources>

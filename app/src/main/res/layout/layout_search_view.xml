@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_search_input_field_transparent">
+
+    <com.beetech.tienichmuasam.custom.ClearableEditText
+        android:id="@+id/edt_search"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:imeOptions="actionSearch"
+        android:padding="@dimen/margin_6dp"
+        android:textSize="@dimen/text_size16"
+        app:clearButtonDrawable="@drawable/ic_close_round"
+        app:edtBackground="@android:color/transparent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_record"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_record"
+        android:layout_width="@dimen/margin_28dp"
+        android:layout_height="@dimen/margin_28dp"
+        android:layout_marginEnd="@dimen/margin_10dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/margin_4dp"
+        android:src="@drawable/ic_record"
+        android:tint="@color/black"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_search"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btn_search"
+        android:layout_width="@dimen/margin_28dp"
+        android:layout_height="@dimen/margin_28dp"
+        android:layout_marginEnd="@dimen/margin_6dp"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/margin_6dp"
+        android:src="@drawable/ic_search_white"
+        android:tint="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
