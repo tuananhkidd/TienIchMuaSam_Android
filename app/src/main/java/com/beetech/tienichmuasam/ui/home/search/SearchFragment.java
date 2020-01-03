@@ -10,23 +10,31 @@ import android.os.Handler;
 import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.beetech.tienichmuasam.R;
+import com.beetech.tienichmuasam.adapter.ListProductAdapter;
 import com.beetech.tienichmuasam.adapter.ListWaveMusicAdapter;
+import com.beetech.tienichmuasam.adapter.SuggestAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
+import com.beetech.tienichmuasam.custom.SpacesItemDecoration;
 import com.beetech.tienichmuasam.databinding.FragmentSearchBinding;
+import com.beetech.tienichmuasam.entity.response.ListProductResponse;
+import com.beetech.tienichmuasam.ui.product.DetaillProductFragment;
+import com.beetech.tienichmuasam.utils.Constant;
 import com.beetech.tienichmuasam.utils.UIUtil;
+import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -39,6 +47,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
     private List<Double> listDb = new ArrayList<>();
     private SpeechRecognizer speech = null;
     private Intent recognizerIntent;
+    private ListProductAdapter listProductAdapter;
 
     public SearchFragment() {
     }
@@ -61,6 +70,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
 
     @Override
     public void initView() {
+        searchViewModel = ViewModelProviders.of(this, viewModelFactory).get(SearchViewModel.class);
         if (getActivity() != null) {
             getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
         }
@@ -70,15 +80,13 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
     public void initData() {
         initWaveMusic();
         initSpeechRecognizer();
+        initSuggest();
+        initSearch();
     }
 
     @Override
     public void initListener() {
         super.initListener();
-        binding.searchView.setOnClickRecordListener(v -> {
-            //fixme check permission record
-            startRecord();
-        });
 
         binding.btnStopRecord.setOnClickListener(view -> {
             stopRecord();
@@ -86,17 +94,20 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
 
         binding.searchView.setOnSearchKeyBoardListener((textView, actionId, keyEvent) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                Toast.makeText(getContext(),  binding.searchView.getSearchText(), Toast.LENGTH_SHORT).show();
+                searchViewModel.search(binding.searchView.getSearchText(),true);
                 return true;
             }
             return false;
+        }).setOnClickSearchListener(view -> {
+            searchViewModel.search(binding.searchView.getSearchText(),true);
+        }).setOnClickRecordListener(v -> {
+            //fixme check permission record
+            startRecord();
         });
 
-        binding.searchView.setOnClickSearchListener(view -> {
-            Toast.makeText(getContext(),  binding.searchView.getSearchText(), Toast.LENGTH_SHORT).show();
-        });
     }
 
+    //region record
     private void initWaveMusic() {
         if (getContext() == null) {
             return;
@@ -191,7 +202,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
     };
 
 
-    public void startRecord() {
+    private void startRecord() {
         speech.startListening(recognizerIntent);
         binding.layoutRecord.setVisibility(View.VISIBLE);
         binding.layoutRecordBackground.setVisibility(View.VISIBLE);
@@ -199,7 +210,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
         binding.layoutRecord.animate().translationY(0).setDuration(300).start();
     }
 
-    public void stopRecord() {
+    private void stopRecord() {
         try {
             Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
             Ringtone r = RingtoneManager.getRingtone(getContext(), notification);
@@ -215,5 +226,43 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
             }
         }, 300);
         speech.stopListening();
+    }
+
+    //endregion
+
+    private void initSuggest() {
+        SuggestAdapter suggestAdapter = new SuggestAdapter(suggest -> {
+            binding.searchView.setEdtSearch(suggest);
+        });
+        ChipsLayoutManager chipsLayoutManager = ChipsLayoutManager.newBuilder(getContext()).build();
+        binding.rcvSuggest.setLayoutManager(chipsLayoutManager);
+        binding.rcvSuggest.addItemDecoration(new SpacesItemDecoration(getContext().getResources().getDimensionPixelSize(R.dimen.margin_6dp)));
+        binding.rcvSuggest.setAdapter(suggestAdapter);
+    }
+
+    private void initSearch(){
+        listProductAdapter = new ListProductAdapter(getContext());
+        binding.rcvSearch.setListLayoutManager(LinearLayoutManager.VERTICAL);
+        binding.rcvSearch.setAdapter(listProductAdapter);
+        binding.rcvSearch.setOnLoadingMoreListener(() -> searchViewModel.search(binding.searchView.getSearchText(),false));
+
+        binding.rcvSearch.setOnItemClickListener((adapter, viewHolder, viewType, position) -> {
+            ListProductResponse searchResponse = listProductAdapter.getItem(position, ListProductResponse.class);
+            HashMap<String,String> data = new HashMap<>();
+            data.put(Constant.PRODUCT_ID,searchResponse.getId());
+            getViewController().addFragment(DetaillProductFragment.class,data);
+        });
+        searchViewModel.getSearch().observe(getViewLifecycleOwner(),
+                searchResponseListResponse -> handleLoadMoreResponse(searchResponseListResponse, searchResponseListResponse.isRefresh(), searchResponseListResponse.isCanLoadmore()));
+    }
+
+    @Override
+    protected void getListResponse(List<?> data, boolean isRefresh, boolean canLoadmore) {
+        binding.rcvSearch.enableLoadmore(canLoadmore);
+        if (isRefresh) {
+            binding.rcvSearch.refresh(data);
+        } else {
+            binding.rcvSearch.addItem(data);
+        }
     }
 }

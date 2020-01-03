@@ -29,6 +29,7 @@
     <string name="no_comment">Chưa có đánh giá</string>
     <string name="what_do_you_want_to_search">Bạn đang tìm kiếm gì?</string>
     <string name="stop_speak">Dừng</string>
+    <string name="suggest">Gợi ý</string>
 
     <integer name="activity_anim_duration">300</integer>
 </resources>

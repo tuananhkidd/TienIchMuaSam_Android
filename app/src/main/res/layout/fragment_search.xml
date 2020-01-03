@@ -51,6 +51,39 @@
                 android:padding="@dimen/margin_10dp" />
         </RelativeLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_suggest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_10dp"
+            android:background="@drawable/bg_suggest"
+            android:padding="@dimen/margin_4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchView">
+
+            <TextView
+                android:id="@+id/tv_suggest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_10dp"
+                android:fontFamily="@font/lato_bold"
+                android:text="@string/suggest"
+                android:textColor="@color/black"
+                android:textSize="@dimen/text_size16"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_suggest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_suggest" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
         <com.beetech.tienichmuasam.custom.SearchView
@@ -62,16 +95,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:sv_hint="@string/what_do_you_want_to_search"
-            app:sv_show_record="false" />
+            app:sv_show_record="true" />
 
         <com.beetech.tienichmuasam.base.BaseRecyclerView
+            android:id="@+id/rcv_search"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_10dp"
             app:brv_enable_refresh="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/searchView" />
+            app:layout_constraintTop_toBottomOf="@id/layout_suggest" />
 
         <View
             android:id="@+id/layout_record_background"
