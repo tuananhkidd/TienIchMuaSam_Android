@@ -1,6 +1,7 @@
 package com.beetech.tienichmuasam.ui.list_product;
 
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,7 +13,6 @@ import com.beetech.tienichmuasam.databinding.ListProductFragmentBinding;
 import com.beetech.tienichmuasam.entity.response.ListProductResponse;
 import com.beetech.tienichmuasam.ui.product.DetaillProductFragment;
 import com.beetech.tienichmuasam.utils.Constant;
-import com.beetech.tienichmuasam.utils.DeviceUtil;
 
 import java.util.HashMap;
 import java.util.List;
@@ -63,14 +63,17 @@ public class ListProductFragment extends BaseFragment<ListProductFragmentBinding
         binding.rcvListProduct.setOnRefreshListener(() -> mViewModel.getListProduct(true));
         binding.rcvListProduct.setOnItemClickListener((adapter, viewHolder, viewType, position) -> {
             ListProductResponse searchResponse = listProductAdapter.getItem(position, ListProductResponse.class);
-            HashMap<String,String> data = new HashMap<>();
-            data.put(Constant.PRODUCT_ID,searchResponse.getId());
-            getViewController().addFragment(DetaillProductFragment.class,data);
+            HashMap<String, String> data = new HashMap<>();
+            data.put(Constant.PRODUCT_ID, searchResponse.getId());
+            getViewController().addFragment(DetaillProductFragment.class, data);
         });
         mViewModel.getListProduct(true);
         mViewModel.getListProducts().observe(getViewLifecycleOwner(),
                 searchResponseListResponse -> handleLoadMoreResponse(searchResponseListResponse, searchResponseListResponse.isRefresh(), searchResponseListResponse.isCanLoadmore()));
 
+        showLoading();
+
+        new Handler().postDelayed(this::hideLoading, 5000);
     }
 
 

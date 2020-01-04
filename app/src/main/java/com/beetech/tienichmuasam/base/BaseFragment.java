@@ -12,6 +12,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.beetech.tienichmuasam.R;
+import com.beetech.tienichmuasam.custom.dialog.LoadingDialog;
 import com.beetech.tienichmuasam.utils.Define;
 import com.beetech.tienichmuasam.utils.DialogUtil;
 
@@ -31,6 +33,8 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
 
     protected T binding;
 
+    protected LoadingDialog loadingDialog;
+
     /**
      * The ViewController for control fragments in an activity
      */
@@ -42,6 +46,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         binding.setLifecycleOwner(this.getViewLifecycleOwner());
+        loadingDialog = new LoadingDialog();
         return binding.getRoot();
     }
 
@@ -99,25 +104,38 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
         setArguments(bundle);
     }
 
+    protected void showLoading() {
+        if (loadingDialog != null) {
+            loadingDialog.show(getChildFragmentManager(), loadingDialog.getTag());
+            loadingDialog.setCancelable(false);
+        }
+    }
+
+    protected void hideLoading() {
+        if (loadingDialog != null) {
+            loadingDialog.dismiss();
+        }
+    }
+
     protected void handleListResponse(ListResponse<?> response) {
         switch (response.getType()) {
             case Define.ResponseStatus.LOADING:
-                DialogUtil.getInstance(getContext()).show();
+                showLoading();
                 break;
             case Define.ResponseStatus.SUCCESS:
                 getListResponse(response.getData());
                 DialogUtil.getInstance(getContext()).hidden();
                 break;
             case Define.ResponseStatus.ERROR:
+                hideLoading();
                 handleNetworkError(response.getError(), true);
-                DialogUtil.getInstance(getContext()).hidden();
         }
     }
 
     protected void handleLoadMoreResponse(ListResponse<?> response, boolean isRefresh, boolean canLoadmore) {
         switch (response.getType()) {
             case Define.ResponseStatus.LOADING:
-                DialogUtil.getInstance(getContext()).show();
+                showLoading();
                 break;
             case Define.ResponseStatus.SUCCESS:
                 getListResponse(response.getData(), isRefresh, canLoadmore);
@@ -125,14 +143,14 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
                 break;
             case Define.ResponseStatus.ERROR:
                 handleNetworkError(response.getError(), true);
-                DialogUtil.getInstance(getContext()).hidden();
+                hideLoading();
         }
     }
 
     protected <U> void handleObjectResponse(ObjectResponse<U> response) {
         switch (response.getStatus()) {
             case Define.ResponseStatus.LOADING:
-                DialogUtil.getInstance(getContext()).show();
+                showLoading();
                 break;
             case Define.ResponseStatus.SUCCESS:
                 getObjectResponse(response.getData());
@@ -140,7 +158,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
                 break;
             case Define.ResponseStatus.ERROR:
                 handleNetworkError(response.getError(), true);
-                DialogUtil.getInstance(getContext()).hidden();
+                hideLoading();
         }
     }
 
@@ -178,7 +196,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
 
     public abstract void initData();
 
-    public void initListener(){
+    public void initListener() {
 
     }
 }

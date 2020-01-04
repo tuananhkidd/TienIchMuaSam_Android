@@ -33,6 +33,7 @@ import com.beetech.tienichmuasam.databinding.FragmentSearchBinding;
 import com.beetech.tienichmuasam.entity.response.ListProductResponse;
 import com.beetech.tienichmuasam.ui.product.DetaillProductFragment;
 import com.beetech.tienichmuasam.utils.Constant;
+import com.beetech.tienichmuasam.utils.DeviceUtil;
 import com.beetech.tienichmuasam.utils.UIUtil;
 import com.beloo.widget.chipslayoutmanager.ChipsLayoutManager;
 
@@ -124,7 +125,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     startRecord();
                 } else {
-                    Toast.makeText(getContext(), "Permission Record Deny", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "Permission Record Denied", Toast.LENGTH_SHORT).show();
                 }
                 break;
             }
@@ -282,6 +283,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
 
     @Override
     protected void getListResponse(List<?> data, boolean isRefresh, boolean canLoadmore) {
+        DeviceUtil.hideSoftKeyboard(getActivity());
         binding.rcvSearch.enableLoadmore(canLoadmore);
         if (isRefresh) {
             binding.rcvSearch.refresh(data);
