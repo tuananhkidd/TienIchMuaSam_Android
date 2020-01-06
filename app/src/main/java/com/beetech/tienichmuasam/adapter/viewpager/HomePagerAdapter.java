@@ -20,8 +20,8 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         super(fm);
         fragments.add(new NewFeedsFragment());
         fragments.add(new SearchFragment());
-        fragments.add(new ChatFragment());
         fragments.add(new SearchFragment());
+        fragments.add(new ChatFragment());
         fragments.add(new SearchFragment());
     }
 

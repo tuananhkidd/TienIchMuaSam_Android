@@ -43,9 +43,6 @@ public class ChatFragment extends BaseFragment<ChatFragmentBinding> implements E
     public void initView() {
         mViewModel = ViewModelProviders.of(this, viewModelFactory).get(ChatViewModel.class);
         mViewModel.getRoomID();
-        if (getActivity() != null) {
-            binding.llChat.setPadding(0, DeviceUtil.getStatusBarHeight(getActivity()), 0, 0);
-        }
     }
 
     @Override

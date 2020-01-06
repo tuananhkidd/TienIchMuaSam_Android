@@ -33,7 +33,7 @@ public class LoadingDialog extends DialogFragment {
             getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
             getDialog().setContentView(root);
             if (getDialog().getWindow() != null) {
-                getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.WHITE));
+                getDialog().getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 getDialog().getWindow().getAttributes().windowAnimations = R.style.DialogAnimation;
             }
 
