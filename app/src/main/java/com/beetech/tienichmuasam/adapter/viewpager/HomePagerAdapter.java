@@ -9,6 +9,7 @@ import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.ui.home.chat.ChatFragment;
 import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsFragment;
 import com.beetech.tienichmuasam.ui.home.search.SearchFragment;
+import com.beetech.tienichmuasam.ui.profile.PersonFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         fragments.add(new SearchFragment());
         fragments.add(new SearchFragment());
         fragments.add(new ChatFragment());
-        fragments.add(new SearchFragment());
+        fragments.add(new PersonFragment());
     }
 
     @NonNull

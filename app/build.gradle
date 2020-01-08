@@ -116,10 +116,10 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.1.0"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // firebase
-    implementation 'com.google.firebase:firebase-messaging:11.8.0'
-    implementation 'com.google.firebase:firebase-storage:11.8.0'
-    implementation 'com.google.firebase:firebase-firestore:11.8.0'
-    implementation 'com.google.firebase:firebase-auth:11.8.0'
+    implementation 'com.google.firebase:firebase-messaging:20.1.0'
+    implementation 'com.google.firebase:firebase-storage:19.1.0'
+    implementation 'com.google.firebase:firebase-firestore:21.3.1'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
 
     // loading animation
     implementation 'com.wang.avi:library:2.1.3'

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.beetech.tienichmuasam.di.ViewModelFactory;
+import com.beetech.tienichmuasam.ui.cart.CartViewModel;
 import com.beetech.tienichmuasam.ui.home.HomeViewModel;
 import com.beetech.tienichmuasam.ui.home.chat.ChatViewModel;
 import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsViewModel;
@@ -11,6 +12,7 @@ import com.beetech.tienichmuasam.ui.home.search.SearchViewModel;
 import com.beetech.tienichmuasam.ui.list_product.ListProductViewModel;
 import com.beetech.tienichmuasam.ui.main.MainViewModel;
 import com.beetech.tienichmuasam.ui.product.DetaillProductViewModel;
+import com.beetech.tienichmuasam.ui.profile.PersonViewModel;
 import com.beetech.tienichmuasam.ui.splash.SplashViewModel;
 
 import dagger.Binds;
@@ -60,6 +62,16 @@ public abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(DetaillProductViewModel.class)
     abstract ViewModel bindDetailProductViewModel(DetaillProductViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(CartViewModel.class)
+    abstract ViewModel bindCartViewModel(CartViewModel viewModel);
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PersonViewModel.class)
+    abstract ViewModel bindPersonViewModel(PersonViewModel viewModel);
 
     @Binds
     abstract ViewModelProvider.Factory bindViewModelFactory(ViewModelFactory factory);

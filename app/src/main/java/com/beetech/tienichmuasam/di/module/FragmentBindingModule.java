@@ -1,12 +1,14 @@
 package com.beetech.tienichmuasam.di.module;
 
 
+import com.beetech.tienichmuasam.ui.cart.CartFragment;
 import com.beetech.tienichmuasam.ui.home.HomeFragment;
 import com.beetech.tienichmuasam.ui.home.chat.ChatFragment;
 import com.beetech.tienichmuasam.ui.home.dashboard.NewFeedsFragment;
 import com.beetech.tienichmuasam.ui.home.search.SearchFragment;
 import com.beetech.tienichmuasam.ui.list_product.ListProductFragment;
 import com.beetech.tienichmuasam.ui.product.DetaillProductFragment;
+import com.beetech.tienichmuasam.ui.profile.PersonFragment;
 import com.beetech.tienichmuasam.ui.splash.SplashFragment;
 
 import dagger.Module;
@@ -35,5 +37,11 @@ public abstract class FragmentBindingModule {
     abstract DetaillProductFragment bindDetailProductFragment();
 
     @ContributesAndroidInjector
+    abstract CartFragment bindCartFragment();
+
+    @ContributesAndroidInjector
     abstract ChatFragment bindChatFragment();
+
+    @ContributesAndroidInjector
+    abstract PersonFragment bindPersonalFragment();
 }

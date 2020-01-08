@@ -43,6 +43,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <com.beetech.tienichmuasam.custom.BaseToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:bt_title="@string/search"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.beetech.tienichmuasam.custom.SearchView
             android:id="@+id/searchView"
@@ -51,7 +57,7 @@
             android:layout_margin="@dimen/margin_10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:sv_hint="@string/what_do_you_want_to_search"
             app:sv_show_record="true" />
 

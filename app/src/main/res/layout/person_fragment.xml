@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        tools:context=".ui.profile.PersonFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.beetech.tienichmuasam.custom.BaseToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bt_title="@string/personal" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:padding="@dimen/margin_10dp">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_logo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/image_placeholder"
+                    app:civ_border_color="@color/colorPrimary"
+                    app:civ_border_width="@dimen/margin_2dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_size16"
+                    app:layout_constraintStart_toStartOf="@+id/tv_welcome"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_welcome"
+                    tools:text="Tuan Anh Kidd" />
+
+                <TextView
+                    android:id="@+id/tv_welcome"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_10dp"
+                    android:layout_marginTop="@dimen/margin_10dp"
+                    android:fontFamily="@font/lato_regular"
+                    android:maxLines="2"
+                    android:text="Chào mừng bạn đến với Tiện ích mua sắm"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_logo"
+                    app:layout_constraintTop_toTopOf="@+id/img_logo" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <com.beetech.tienichmuasam.custom.ItemRow
+                    android:id="@+id/row_manage_order"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_action="@drawable/ic_arrow_right"
+                    app:item_icon="@drawable/ic_heart_red"
+                    app:item_title="@string/manage_order" />
+
+                <com.beetech.tienichmuasam.custom.ItemRow
+                    android:id="@+id/row_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_action="@drawable/ic_arrow_right"
+                    app:item_icon="@drawable/ic_heart_red"
+                    app:item_title="@string/product_buy" />
+
+                <com.beetech.tienichmuasam.custom.ItemRow
+                    android:id="@+id/row_favourite_product"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_action="@drawable/ic_arrow_right"
+                    app:item_icon="@drawable/ic_heart_red"
+                    app:item_title="@string/favourite_product" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_10dp"
+                android:background="@color/white"
+                android:orientation="vertical">
+
+                <com.beetech.tienichmuasam.custom.ItemRow
+                    android:id="@+id/row_hotline"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_action="@drawable/ic_arrow_right"
+                    app:item_title="@string/hotline" />
+
+                <com.beetech.tienichmuasam.custom.ItemRow
+                    android:id="@+id/row_faq"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_action="@drawable/ic_arrow_right"
+                    app:item_title="@string/faq_title" />
+
+                <com.beetech.tienichmuasam.custom.ItemRow
+                    android:id="@+id/row_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:item_action="@drawable/ic_arrow_right"
+                    app:item_title="@string/contact_title" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_logout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/margin_10dp"
+                android:background="@color/colorPrimary"
+                android:fontFamily="@font/lato_bold"
+                android:text="Đăng xuất"
+                android:textColor="@color/white"
+                android:visibility="visible" />
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

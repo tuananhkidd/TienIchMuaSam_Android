@@ -10,6 +10,7 @@ import com.beetech.tienichmuasam.adapter.viewpager.NewsFeedSlideAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.custom.behavior.CarouselEffectTransformer;
 import com.beetech.tienichmuasam.databinding.FragmentNewFeedsBinding;
+import com.beetech.tienichmuasam.ui.cart.CartFragment;
 import com.beetech.tienichmuasam.ui.list_product.ListProductFragment;
 import com.beetech.tienichmuasam.utils.Constant;
 import com.beetech.tienichmuasam.utils.DeviceUtil;
@@ -85,5 +86,12 @@ public class NewFeedsFragment extends BaseFragment<FragmentNewFeedsBinding> {
             });
         });
         newFeedsViewModel.getListCategory();
+    }
+
+    @Override
+    public void initListener() {
+        binding.btnCart.setOnClickListener(v->{
+            getViewController().addFragment(CartFragment.class,null);
+        });
     }
 }

@@ -30,6 +30,15 @@
     <string name="what_do_you_want_to_search">Bạn đang tìm kiếm gì?</string>
     <string name="stop_speak">Dừng</string>
     <string name="suggest">Gợi ý</string>
+    <string name="search">Tìm kiếm</string>
+    <string name="personal">Cá nhân</string>
+    <string name="manage_order">Quản lý đơn hàng</string>
+    <string name="product_buy">Sản phẩm đã mua</string>
+    <string name="favourite_product">Sản phẩm yêu thích</string>
+    <string name="hotline">HOT LINE (Miễn phí)</string>
+    <string name="faq_title">Câu hỏi thường gặp</string>
+    <string name="contact_title">Hỗ trợ</string>
+    <string name="login_logout">Đăng Nhập/ Đăng Ký</string>
 
     <integer name="activity_anim_duration">300</integer>
 </resources>
