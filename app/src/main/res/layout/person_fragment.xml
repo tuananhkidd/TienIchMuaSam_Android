@@ -3,6 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="userVM"
+            type="com.beetech.tienichmuasam.ui.profile.PersonViewModel" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="user"
+            type="com.beetech.tienichmuasam.entity.response.UserResponse" />
+    </data>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -21,6 +34,7 @@
                 app:bt_title="@string/personal" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_user_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
@@ -42,6 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_10dp"
                     android:fontFamily="@font/lato_bold"
+                    android:text="@{userVM.isLogin ? userVM.user.userName : @string/login_logout}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/text_size16"
                     app:layout_constraintStart_toStartOf="@+id/tv_welcome"
@@ -131,9 +146,10 @@
                 android:layout_margin="@dimen/margin_10dp"
                 android:background="@color/colorPrimary"
                 android:fontFamily="@font/lato_bold"
+                android:onClick="@{()->userVM.onClickLogout()}"
                 android:text="Đăng xuất"
                 android:textColor="@color/white"
-                android:visibility="visible" />
+                android:visibility="@{userVM.isLogin ? 0 : 8}" />
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

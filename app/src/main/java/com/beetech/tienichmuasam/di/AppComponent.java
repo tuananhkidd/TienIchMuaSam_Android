@@ -8,6 +8,7 @@ import com.beetech.tienichmuasam.di.module.ActivityBindingModule;
 import com.beetech.tienichmuasam.di.module.AppModule;
 import com.beetech.tienichmuasam.di.module.FragmentBindingModule;
 import com.beetech.tienichmuasam.di.module.NetworkModule;
+import com.beetech.tienichmuasam.di.module.SharedPrefModule;
 import com.beetech.tienichmuasam.di.module.ViewModelModule;
 
 import javax.inject.Singleton;
@@ -23,7 +24,8 @@ import dagger.android.support.AndroidSupportInjectionModule;
         ActivityBindingModule.class,
         FragmentBindingModule.class,
         ViewModelModule.class,
-        NetworkModule.class
+        NetworkModule.class,
+        SharedPrefModule.class
 })
 public interface AppComponent {
 
