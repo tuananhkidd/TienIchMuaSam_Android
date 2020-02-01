@@ -8,6 +8,8 @@ import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.databinding.SplashFragmentBinding;
 import com.beetech.tienichmuasam.ui.home.HomeFragment;
+import com.beetech.tienichmuasam.ui.introduce.WelcomeFragment;
+import com.beetech.tienichmuasam.utils.DialogUtil;
 
 
 public class SplashFragment extends BaseFragment<SplashFragmentBinding> {
@@ -31,14 +33,19 @@ public class SplashFragment extends BaseFragment<SplashFragmentBinding> {
 
     @Override
     public void initView() {
-        mViewModel = ViewModelProviders.of(this,viewModelFactory).get(SplashViewModel.class);
+        mViewModel = ViewModelProviders.of(this, viewModelFactory).get(SplashViewModel.class);
     }
 
     @Override
     public void initData() {
-        new Handler().postDelayed(()->{
-            getViewController().addFragment(HomeFragment.class,null);
-        },2000);
+        new Handler().postDelayed(() -> {
+            if (mViewModel.isFirstTime()) {
+                mViewModel.setFirstTime(false);
+                getViewController().replaceFragment(WelcomeFragment.class, null);
+            } else {
+                getViewController().replaceFragment(HomeFragment.class, null);
+            }
+        }, 2000);
     }
 
 }

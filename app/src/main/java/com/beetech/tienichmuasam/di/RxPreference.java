@@ -10,5 +10,9 @@ public interface RxPreference {
 
     boolean isLogin();
 
+    boolean isFirstTime();
+
     UserResponse getUserInfo();
+
+    public void setFirstTime(boolean isFirstTime);
 }

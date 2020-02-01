@@ -41,6 +41,14 @@ public class Repository {
         return rxPreference.isLogin();
     }
 
+    public boolean isFirstTime() {
+        return rxPreference.isFirstTime();
+    }
+
+    public void setFirstTime(boolean isFirstTime) {
+        rxPreference.setFirstTime(isFirstTime);
+    }
+
     public UserResponse getUserInfo() {
         return rxPreference.getUserInfo();
     }

@@ -3,6 +3,7 @@ package com.beetech.tienichmuasam.utils;
 public class Define {
 
     public static final String PREF_FILE_NAME = "ec_pref";
+    public static final String FIRST_TIME_PREF_FILE_NAME = "first_time_ec_pref";
     public static final String REALM_NAME = "ec_database";
 
     public static final long DEFAULT_TIMEOUT = 60L;

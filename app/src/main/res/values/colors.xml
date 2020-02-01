@@ -14,4 +14,9 @@
     <color name="transparency_black">#3F000000</color>
     <color name="dot_online_color">#00FF00</color>
     <color name="dot_offline_color">#AAAAAA</color>
+    <!-- Screens background color-->
+    <color name="bg_screen1">#3498db</color>
+    <color name="bg_screen2">#e74c3c</color>
+    <color name="bg_screen3">#9b59b6</color>
+    <color name="bg_screen4">#1abc9c</color>
 </resources>

@@ -6,10 +6,10 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-<!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
-<!--        <item name="android:windowNoTitle">true</item>-->
-<!--        <item name="android:windowTranslucentStatus">true</item>-->
-<!--        <item name="android:windowContentOverlay">@null</item>-->
+        <!--        <item name="android:statusBarColor">@android:color/transparent</item>-->
+        <!--        <item name="android:windowNoTitle">true</item>-->
+        <!--        <item name="android:windowTranslucentStatus">true</item>-->
+        <!--        <item name="android:windowContentOverlay">@null</item>-->
     </style>
 
     <style name="TextViewNormal">
@@ -31,7 +31,7 @@
     </style>
 
     <style name="ImageDetailDialogStyle">
-        <item name="android:windowEnterAnimation"> @anim/scale_in</item>
+        <item name="android:windowEnterAnimation">@anim/scale_in</item>
         <item name="android:windowExitAnimation">@anim/scale_out</item>
     </style>
 
@@ -39,4 +39,16 @@
         <item name="android:windowEnterAnimation">@anim/animation_none</item>
         <item name="android:windowExitAnimation">@anim/fade_out</item>
     </style>
+
+    <style name="ActionButton">
+        <item name="background">?attr/selectableItemBackgroundBorderless</item>
+        <item name="paddingStart">12dp</item>
+        <item name="paddingEnd">12dp</item>
+        <item name="minWidth">@dimen/margin_48dp</item>
+        <item name="minHeight">@dimen/margin_48dp</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
 </resources>

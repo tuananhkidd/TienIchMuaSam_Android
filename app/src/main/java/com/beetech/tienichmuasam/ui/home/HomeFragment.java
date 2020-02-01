@@ -9,7 +9,7 @@ import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.adapter.viewpager.HomePagerAdapter;
 import com.beetech.tienichmuasam.base.BaseFragment;
 import com.beetech.tienichmuasam.databinding.HomeFragmentBinding;
-
+import com.beetech.tienichmuasam.utils.DialogUtil;
 
 
 public class HomeFragment extends BaseFragment<HomeFragmentBinding> {
@@ -33,7 +33,7 @@ public class HomeFragment extends BaseFragment<HomeFragmentBinding> {
 
     @Override
     public void initView() {
-
+        DialogUtil.getInstance(getContext()).hidden();
     }
 
     @Override
