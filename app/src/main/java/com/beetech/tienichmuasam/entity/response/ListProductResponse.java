@@ -1,102 +1,148 @@
 package com.beetech.tienichmuasam.entity.response;
 
-import android.text.Html;
-import android.widget.TextView;
-
-import androidx.databinding.BindingAdapter;
-
-import com.beetech.tienichmuasam.BuildConfig;
-import com.beetech.tienichmuasam.R;
-import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
-
-import java.math.BigDecimal;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ListProductResponse {
 
-    @SerializedName("price")
-    private BigDecimal regularPrice;
+    @SerializedName("sizeId")
+    private String sizeId;
 
-    @SerializedName("priceDiscount")
-    private BigDecimal sellerPrice;
-
-    @SerializedName("imagePath")
-    private String avatarUrl;
+    @SerializedName("productId")
+    private String productId;
 
     @SerializedName("like")
-    private int favouriteCount;
+    private int like;
 
-    @SerializedName("name")
-    private String name;
+    @SerializedName("colorId")
+    private String colorId;
 
-    @SerializedName("id")
-    private String id;
-
-    @SerializedName("priceStr")
-    private String priceStr;
+    @SerializedName("imagePath")
+    private String imagePath;
 
     @SerializedName("priceDiscountStr")
     private String priceDiscountStr;
 
-    @SerializedName("view")
-    private String view;
+    @SerializedName("discount")
+    private int discount;
 
-    public String getView() {
-        return view;
+    @SerializedName("priceDiscount")
+    private double priceDiscount;
+
+    @SerializedName("totalSellCount")
+    private int totalSellCount;
+
+    @SerializedName("priceStr")
+    private String priceStr;
+
+    @SerializedName("totalBuyCount")
+    private int totalBuyCount;
+
+    @SerializedName("price")
+    private double price;
+
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("stockNum")
+    private int stockNum;
+
+    @SerializedName("views")
+    private int views;
+
+    public void setSizeId(String sizeId) {
+        this.sizeId = sizeId;
     }
 
-    public void setView(String view) {
-        this.view = view;
+    public String getSizeId() {
+        return sizeId;
     }
 
-    public String getPriceStr() {
-        return priceStr;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
-    public void setPriceStr(String priceStr) {
-        this.priceStr = priceStr;
+    public String getProductId() {
+        return productId;
     }
 
-    public String getPriceDiscountStr() {
-        return priceDiscountStr;
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getLike() {
+        return like;
+    }
+
+    public void setColorId(String colorId) {
+        this.colorId = colorId;
+    }
+
+    public String getColorId() {
+        return colorId;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
+    public String getImagePath() {
+        return imagePath;
     }
 
     public void setPriceDiscountStr(String priceDiscountStr) {
         this.priceDiscountStr = priceDiscountStr;
     }
 
-    public void setRegularPrice(BigDecimal regularPrice) {
-        this.regularPrice = regularPrice;
+    public String getPriceDiscountStr() {
+        return priceDiscountStr;
     }
 
-    public BigDecimal getRegularPrice() {
-        return regularPrice;
+    public void setDiscount(int discount) {
+        this.discount = discount;
     }
 
-    public void setSellerPrice(BigDecimal sellerPrice) {
-        this.sellerPrice = sellerPrice;
+    public int getDiscount() {
+        return discount;
     }
 
-    public BigDecimal getSellerPrice() {
-        return sellerPrice;
+    public void setPriceDiscount(double priceDiscount) {
+        this.priceDiscount = priceDiscount;
     }
 
-    public void setAvatarUrl(String avatarUrl) {
-        this.avatarUrl = avatarUrl;
+    public double getPriceDiscount() {
+        return priceDiscount;
     }
 
-    public String getAvatarUrl() {
-        return avatarUrl;
+    public void setTotalSellCount(int totalSellCount) {
+        this.totalSellCount = totalSellCount;
     }
 
-    public void setFavouriteCount(int favouriteCount) {
-        this.favouriteCount = favouriteCount;
+    public int getTotalSellCount() {
+        return totalSellCount;
     }
 
-    public int getFavouriteCount() {
-        return favouriteCount;
+    public void setPriceStr(String priceStr) {
+        this.priceStr = priceStr;
+    }
+
+    public String getPriceStr() {
+        return priceStr;
+    }
+
+    public void setTotalBuyCount(int totalBuyCount) {
+        this.totalBuyCount = totalBuyCount;
+    }
+
+    public int getTotalBuyCount() {
+        return totalBuyCount;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public void setName(String name) {
@@ -107,42 +153,43 @@ public class ListProductResponse {
         return name;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setStockNum(int stockNum) {
+        this.stockNum = stockNum;
     }
 
-    public String getId() {
-        return id;
+    public int getStockNum() {
+        return stockNum;
     }
 
-    @BindingAdapter("android:price")
-    public static void showPrice(TextView tv, String price) {
-        if (price != null) {
-            tv.setText(Html.fromHtml("<del>" + price + "</del>"));
-        }
+    public void setViews(int views) {
+        this.views = views;
     }
 
-    @BindingAdapter({"android:image"})
-    public static void loadImage(CircleImageView view, String avatarUrl) {
-        Glide.with(view.getContext())
-                .load(BuildConfig.IMAGE_URL + avatarUrl)
-//                .load(avatarUrl)
-                .placeholder(R.drawable.image_placeholder)
-                .error(R.drawable.image_placeholder)
-                .circleCrop()
-                .into(view);
+    public int getViews() {
+        return views;
     }
+
+
 
     @Override
     public String toString() {
         return
                 "ListProductResponse{" +
-                        "regular_price = '" + regularPrice + '\'' +
-                        ",seller_price = '" + sellerPrice + '\'' +
-                        ",avatar_url = '" + avatarUrl + '\'' +
-                        ",favourite_count = '" + favouriteCount + '\'' +
+                        "sizeId = '" + sizeId + '\'' +
+                        ",productId = '" + productId + '\'' +
+                        ",like = '" + like + '\'' +
+                        ",colorId = '" + colorId + '\'' +
+                        ",imagePath = '" + imagePath + '\'' +
+                        ",priceDiscountStr = '" + priceDiscountStr + '\'' +
+                        ",discount = '" + discount + '\'' +
+                        ",priceDiscount = '" + priceDiscount + '\'' +
+                        ",totalSellCount = '" + totalSellCount + '\'' +
+                        ",priceStr = '" + priceStr + '\'' +
+                        ",totalBuyCount = '" + totalBuyCount + '\'' +
+                        ",price = '" + price + '\'' +
                         ",name = '" + name + '\'' +
-                        ",id = '" + id + '\'' +
+                        ",stockNum = '" + stockNum + '\'' +
+                        ",views = '" + views + '\'' +
                         "}";
     }
 }

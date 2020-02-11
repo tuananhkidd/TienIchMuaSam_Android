@@ -17,13 +17,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="?attr/selectableItemBackground"
-        android:padding="@dimen/margin_10dp">
+        android:paddingStart="@dimen/margin_10dp"
+        android:paddingEnd="@dimen/margin_10dp"
+        android:paddingTop="@dimen/margin_10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/iv_avatar"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:image="@{product.avatarUrl}"
+            android:image="@{product.imagePath}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -67,7 +69,7 @@
             android:fontFamily="@font/philosopher_regular"
             android:maxLines="1"
             android:paddingStart="@dimen/margin_10dp"
-            android:price="@{product.priceDiscountStr}"
+            android:text="@{product.priceDiscountStr}"
             android:textColor="#979292"
             android:textSize="@dimen/text_size12"
             app:layout_constraintEnd_toEndOf="parent"
@@ -84,7 +86,7 @@
             android:fontFamily="@font/lato_regular"
             android:maxLines="1"
             android:paddingStart="@dimen/margin_10dp"
-            android:text="@{String.valueOf(product.favouriteCount)}"
+            android:text="@{String.valueOf(product.like)}"
             android:textColor="#979292"
             android:textSize="@dimen/text_size14"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
@@ -112,7 +114,7 @@
             android:fontFamily="@font/lato_regular"
             android:maxLines="1"
             android:paddingStart="@dimen/margin_10dp"
-            android:text="@{String.valueOf(product.view)}"
+            android:text="@{String.valueOf(product.views)}"
             android:textColor="#979292"
             android:textSize="@dimen/text_size14"
             app:layout_constraintBottom_toBottomOf="@+id/iv_view"

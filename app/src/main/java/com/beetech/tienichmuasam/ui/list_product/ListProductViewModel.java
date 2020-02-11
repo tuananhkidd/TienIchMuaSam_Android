@@ -36,28 +36,28 @@ public class ListProductViewModel extends BaseViewModel {
     }
 
     public void getListProduct(boolean isRefresh) {
-        Type userListType = new TypeToken<ArrayList<ListProductResponse>>(){}.getType();
-        List<ListProductResponse> data = new Gson().fromJson(producJs,userListType);
-        listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().success(data, isRefresh,
-                false));
-//        mDisposable.add(
-//                repository.getListProduct(categoryID, pageIndex)
-//                        .doOnSubscribe(disposable -> {
-//                            if (isRefresh) {
-//                                listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().loading());
-//                            }
-//                        })
-//                        .subscribe(
-//                                response -> {
-//                                    pageIndex++;
-//                                    listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().success(response.getData(), isRefresh,
-//                                            pageIndex <= response.getTotalPage()));
-//                                },
-//                                throwable -> {
-//                                    listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().error(throwable));
-//                                }
-//                        )
-//        );
+//        Type userListType = new TypeToken<ArrayList<ListProductResponse>>(){}.getType();
+//        List<ListProductResponse> data = new Gson().fromJson(producJs,userListType);
+//        listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().success(data, isRefresh,
+//                false));
+        mDisposable.add(
+                repository.getListProduct(categoryID, pageIndex)
+                        .doOnSubscribe(disposable -> {
+                            if (isRefresh) {
+                                listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().loading());
+                            }
+                        })
+                        .subscribe(
+                                response -> {
+                                    pageIndex++;
+                                    listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().success(response.getData(), isRefresh,
+                                            pageIndex <= response.getData().getTotalPage()));
+                                },
+                                throwable -> {
+                                    listProducts.setValue(new ListLoadmoreReponse<ListProductResponse>().error(throwable));
+                                }
+                        )
+        );
     }
 
     private String producJs = " [{\n" +

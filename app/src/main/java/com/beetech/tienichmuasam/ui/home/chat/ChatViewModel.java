@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.beetech.tienichmuasam.BaseApplication;
 import com.beetech.tienichmuasam.base.ListLoadmoreReponse;
+import com.beetech.tienichmuasam.base.ListResponseBody;
 import com.beetech.tienichmuasam.entity.chat.BaseMessage;
 import com.beetech.tienichmuasam.entity.chat.ChatRoomInfo;
 import com.beetech.tienichmuasam.entity.chat.ImageMessage;
@@ -130,7 +131,7 @@ public class ChatViewModel extends ViewModel {
             if (messageCount > 0) {
                 this.lastMessage = baseMessages.get(messageCount - 1);
             }
-            listMessage.setValue(new ListLoadmoreReponse<BaseMessage>().success(baseMessages, isRefresh, messageCount < pageSize));
+            listMessage.setValue(new ListLoadmoreReponse<BaseMessage>().success(new ListResponseBody<>(baseMessages), isRefresh, messageCount < pageSize));
         }).addOnFailureListener(e -> {
 //            listener.onServerError(e.getMessage());
             listMessage.setValue(new ListLoadmoreReponse<BaseMessage>().error(e));

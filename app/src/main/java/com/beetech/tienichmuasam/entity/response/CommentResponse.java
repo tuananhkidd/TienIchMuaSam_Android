@@ -2,6 +2,7 @@ package com.beetech.tienichmuasam.entity.response;
 
 import androidx.databinding.BindingAdapter;
 
+import com.beetech.tienichmuasam.BuildConfig;
 import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.ui.GlideApp;
 
@@ -19,7 +20,7 @@ public class CommentResponse {
     @BindingAdapter({"android:image"})
     public static void loadImage(CircleImageView view, String avatarUrl) {
         GlideApp.with(view.getContext())
-                .load(avatarUrl)
+                .load(BuildConfig.IMAGE_URL+avatarUrl)
                 .placeholder(R.drawable.image_placeholder)
                 .error(R.drawable.image_placeholder)
                 .circleCrop()

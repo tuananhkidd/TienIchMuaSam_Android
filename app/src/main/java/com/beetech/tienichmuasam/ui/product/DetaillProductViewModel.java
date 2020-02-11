@@ -5,9 +5,12 @@ import androidx.lifecycle.MutableLiveData;
 import com.beetech.tienichmuasam.BaseApplication;
 import com.beetech.tienichmuasam.base.BaseViewModel;
 import com.beetech.tienichmuasam.base.ListLoadmoreReponse;
+import com.beetech.tienichmuasam.base.ListResponse;
+import com.beetech.tienichmuasam.base.ListResponseBody;
 import com.beetech.tienichmuasam.base.ObjectResponse;
 import com.beetech.tienichmuasam.entity.response.CommentResponse;
 import com.beetech.tienichmuasam.entity.response.DetailProductResponse;
+import com.beetech.tienichmuasam.network.repository.Repository;
 import com.beetech.tienichmuasam.utils.Utils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,10 +24,16 @@ import javax.inject.Inject;
 public class DetaillProductViewModel extends BaseViewModel {
     private MutableLiveData<ObjectResponse<DetailProductResponse>> detail = new MutableLiveData<>();
     private String productId;
+    private int colorId;
     private MutableLiveData<ListLoadmoreReponse<CommentResponse>> comments = new MutableLiveData<>();
+    private Repository repository;
 
     public void setProductId(String productId) {
         this.productId = productId;
+    }
+
+    public void setColorId(int colorId) {
+        this.colorId = colorId;
     }
 
     public MutableLiveData<ObjectResponse<DetailProductResponse>> getDetail() {
@@ -36,22 +45,36 @@ public class DetaillProductViewModel extends BaseViewModel {
     }
 
     @Inject
-    public DetaillProductViewModel() {
-
+    public DetaillProductViewModel(Repository repository) {
+        this.repository = repository;
     }
 
-    public void getDetailProduct(){
-        //fixme call api
-        DetailProductResponse detailProductResponse = new Gson().fromJson(Utils.readJsonFormAsset(BaseApplication.getContext(),"detail.json"),DetailProductResponse.class);
-        detail.setValue(new ObjectResponse<DetailProductResponse>().success(detailProductResponse));
+    public void getDetailProduct() {
+//        DetailProductResponse detailProductResponse =
+//                new Gson().fromJson(Utils.readJsonFormAsset(BaseApplication.getContext(), "detail.json"), DetailProductResponse.class);
+//        detail.setValue(new ObjectResponse<DetailProductResponse>().success(detailProductResponse));
+
+        mDisposable.add(repository.getDetailProduct(productId, colorId)
+                .doOnSubscribe(disposable -> {
+                    detail.setValue(new ObjectResponse<DetailProductResponse>().loading());
+                })
+                .subscribe(
+                        response -> {
+                            detail.setValue(new ObjectResponse<DetailProductResponse>().success(response.getData()));
+                        },
+                        throwable -> {
+                            detail.setValue(new ObjectResponse<DetailProductResponse>().error(throwable));
+                        }
+                ));
     }
 
-    public void getCommentsAboutProduct(boolean isRefresh){
+    public void getCommentsAboutProduct(boolean isRefresh) {
         //fixme call api
-        Type commentListType = new TypeToken<ArrayList<CommentResponse>>(){}.getType();
-        List<CommentResponse> data = new Gson().fromJson(commentJson,commentListType);
+        Type commentListType = new TypeToken<ArrayList<CommentResponse>>() {
+        }.getType();
+        List<CommentResponse> data = new Gson().fromJson(commentJson, commentListType);
 
-        comments.setValue(new ListLoadmoreReponse<CommentResponse>().success(data, isRefresh,
+        comments.setValue(new ListLoadmoreReponse<CommentResponse>().success(new ListResponseBody(data), isRefresh,
                 true));
     }
 

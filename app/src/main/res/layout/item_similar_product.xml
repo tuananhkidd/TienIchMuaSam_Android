@@ -24,7 +24,7 @@
             android:id="@+id/img_logo"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:image="@{product.avatarUrl}"
+            android:image="@{product.imagePath}"
             android:scaleType="centerCrop"
             app:civ_border_color="@color/colorPrimary"
             app:civ_border_width="@dimen/margin_2dp"

@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.beetech.tienichmuasam.base.BaseViewModel;
 import com.beetech.tienichmuasam.base.ListLoadmoreReponse;
+import com.beetech.tienichmuasam.base.ListResponseBody;
 import com.beetech.tienichmuasam.entity.response.ListProductResponse;
 import com.beetech.tienichmuasam.network.repository.Repository;
 import com.google.gson.Gson;
@@ -33,7 +34,7 @@ public class SearchViewModel extends BaseViewModel {
     public void search(String keyword,boolean isRefresh) {
         Type userListType = new TypeToken<ArrayList<ListProductResponse>>(){}.getType();
         List<ListProductResponse> data = new Gson().fromJson(producJs,userListType);
-        search.setValue(new ListLoadmoreReponse<ListProductResponse>().success(data, isRefresh,
+        search.setValue(new ListLoadmoreReponse<ListProductResponse>().success(new ListResponseBody<>(data), isRefresh,
                 false));
 //        mDisposable.add(
 //                repository.getListProduct(categoryID, pageIndex)

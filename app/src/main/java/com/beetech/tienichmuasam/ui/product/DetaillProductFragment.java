@@ -64,6 +64,7 @@ public class DetaillProductFragment extends BaseFragment<DetaillProductFragmentB
         Bundle bundle = getArguments();
         if (bundle != null) {
             mViewModel.setProductId(bundle.getString(Constant.PRODUCT_ID));
+            mViewModel.setColorId(Integer.parseInt(bundle.getString(Constant.COLOR_ID)));
             mViewModel.getDetailProduct();
         }
 

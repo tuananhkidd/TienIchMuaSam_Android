@@ -4,19 +4,24 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.base.BaseViewModel;
+import com.beetech.tienichmuasam.base.ListResponse;
 import com.beetech.tienichmuasam.entity.response.BannerResponse;
 import com.beetech.tienichmuasam.entity.response.CategoryResponse;
+import com.beetech.tienichmuasam.network.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class NewFeedsViewModel extends BaseViewModel {
-    private MutableLiveData<List<BannerResponse>> banner = new MutableLiveData<>();
-    private MutableLiveData<List<CategoryResponse>> category = new MutableLiveData<>();
+import io.reactivex.schedulers.Schedulers;
 
-    public MutableLiveData<List<BannerResponse>> getBanner() {
+public class NewFeedsViewModel extends BaseViewModel {
+    private MutableLiveData<ListResponse<BannerResponse>> banner = new MutableLiveData<>();
+    private MutableLiveData<List<CategoryResponse>> category = new MutableLiveData<>();
+    private Repository repository;
+
+    public MutableLiveData<ListResponse<BannerResponse>> getBanner() {
         return banner;
     }
 
@@ -25,17 +30,29 @@ public class NewFeedsViewModel extends BaseViewModel {
     }
 
     @Inject
-    public NewFeedsViewModel() {
+    public NewFeedsViewModel(Repository repository) {
+        this.repository = repository;
     }
 
     public void getListBanner() {
-        List<BannerResponse> data = new ArrayList<>();
-        data.add(new BannerResponse("https://tienichmuasam.com/img/banner/1574734813319banner-web5.jpg"));
-        data.add(new BannerResponse("https://tienichmuasam.com/img/banner/banner_2.png"));
-        data.add(new BannerResponse("https://tienichmuasam.com/img/banner/1576213325852banner-web%20(1).png"));
-//        ListResponse<ListResponse<BannerResponse>> list = new ListResponse<>();
-//        list.setData(data);
-        banner.setValue(data);
+//        List<BannerResponse> data = new ArrayList<>();
+//        data.add(new BannerResponse("https://tienichmuasam.com/img/banner/1574734813319banner-web5.jpg"));
+//        data.add(new BannerResponse("https://tienichmuasam.com/img/banner/banner_2.png"));
+//        data.add(new BannerResponse("https://tienichmuasam.com/img/banner/1576213325852banner-web%20(1).png"));
+////        ListResponse<ListResponse<BannerResponse>> list = new ListResponse<>();
+////        list.setData(data);
+        mDisposable.add(repository.getListHomeBanner()
+                .doOnSubscribe(disposable -> {
+                    banner.setValue(new ListResponse<BannerResponse>().loading());
+                })
+                .subscribe(
+                        bannerResponseListResponse -> {
+                            banner.setValue(new ListResponse<BannerResponse>().success(bannerResponseListResponse.getData()));
+                        }
+                        , throwable -> {
+                            banner.setValue(new ListResponse<BannerResponse>().error(throwable));
+                        }
+                ));
     }
 
     public void getListCategory() {

@@ -8,7 +8,7 @@ public class BannerResponse {
     @SerializedName("id")
     @Expose
     private int id;
-    @SerializedName("cover_url")
+    @SerializedName("imagePath")
     @Expose
     private String imgUrl;
     @SerializedName("title")

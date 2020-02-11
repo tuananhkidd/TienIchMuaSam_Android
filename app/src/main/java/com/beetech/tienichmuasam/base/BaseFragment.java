@@ -46,7 +46,6 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
         binding.setLifecycleOwner(this.getViewLifecycleOwner());
-        loadingDialog = new LoadingDialog();
         return binding.getRoot();
     }
 
@@ -105,16 +104,18 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
     }
 
     protected void showLoading() {
-        if (loadingDialog != null) {
-            loadingDialog.show(getChildFragmentManager(), loadingDialog.getTag());
-            loadingDialog.setCancelable(false);
-        }
+//        loadingDialog = new LoadingDialog();
+//        loadingDialog.show(getChildFragmentManager(), loadingDialog.getTag());
+//        loadingDialog.setCancelable(false);
+        DialogUtil.getInstance(getContext()).show();
     }
 
     protected void hideLoading() {
         if (loadingDialog != null) {
             loadingDialog.dismiss();
         }
+        DialogUtil.getInstance(getContext()).hidden();
+
     }
 
     protected void handleListResponse(ListResponse<?> response) {
@@ -124,7 +125,7 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
                 break;
             case Define.ResponseStatus.SUCCESS:
                 getListResponse(response.getData());
-                DialogUtil.getInstance(getContext()).hidden();
+                hideLoading();
                 break;
             case Define.ResponseStatus.ERROR:
                 hideLoading();
@@ -132,14 +133,14 @@ public abstract class BaseFragment<T extends ViewDataBinding> extends DaggerFrag
         }
     }
 
-    protected void handleLoadMoreResponse(ListResponse<?> response, boolean isRefresh, boolean canLoadmore) {
+    protected void handleLoadMoreResponse(ListLoadmoreReponse<?> response, boolean isRefresh, boolean canLoadmore) {
         switch (response.getType()) {
             case Define.ResponseStatus.LOADING:
                 showLoading();
                 break;
             case Define.ResponseStatus.SUCCESS:
-                getListResponse(response.getData(), isRefresh, canLoadmore);
-                DialogUtil.getInstance(getContext()).hidden();
+                getListResponse(response.getData().getResults(), isRefresh, canLoadmore);
+                hideLoading();
                 break;
             case Define.ResponseStatus.ERROR:
                 handleNetworkError(response.getError(), true);

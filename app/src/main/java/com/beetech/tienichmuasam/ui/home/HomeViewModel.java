@@ -38,7 +38,7 @@ public class HomeViewModel extends BaseViewModel {
                                 response -> {
                                     pageIndex++;
                                     search.setValue(new ListLoadmoreReponse<SearchResponse>().success(response.getData(), isRefresh,
-                                            pageIndex <= response.getTotalPage()));
+                                            pageIndex <= response.getData().getTotalPage()));
                                 },
                                 throwable -> {
                                     search.setValue(new ListLoadmoreReponse<SearchResponse>().error(throwable));

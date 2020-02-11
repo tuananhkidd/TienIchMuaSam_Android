@@ -29,7 +29,7 @@ android {
             //signingConfig signingConfigs.debug
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'BASE_URL', '"http://192.168.2.248:7500/api/"'
+            buildConfigField 'String', 'BASE_URL', '"http://192.168.18.54:8080/"'
             buildConfigField 'String', 'IMAGE_URL', '"https://tienichmuasam.com"'
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }

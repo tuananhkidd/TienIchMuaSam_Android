@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.viewpager.widget.ViewPager;
 
 import com.asksira.loopingviewpager.LoopingPagerAdapter;
+import com.beetech.tienichmuasam.BuildConfig;
 import com.beetech.tienichmuasam.R;
 import com.beetech.tienichmuasam.entity.response.BannerResponse;
 import com.beetech.tienichmuasam.utils.UIUtil;
@@ -64,6 +65,6 @@ public class NewsFeedSlideAdapter extends LoopingPagerAdapter<BannerResponse> {
     protected void bindView(View view, int listPosition, int viewType) {
         ImageView imageView = view.findViewById(R.id.ivBackground);
         BannerResponse item = listItems.get(listPosition);
-        Glide.with(context).load(item.getImgUrl()).apply(options).into(imageView);
+        Glide.with(context).load(BuildConfig.IMAGE_URL+item.getImgUrl()).apply(options).into(imageView);
     }
 }

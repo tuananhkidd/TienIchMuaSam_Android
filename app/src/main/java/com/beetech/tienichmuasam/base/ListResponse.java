@@ -10,11 +10,9 @@ import java.util.List;
 
 import io.reactivex.annotations.Nullable;
 
-public class ListResponse<T> extends BaseResponse{
+public class ListResponse<T> extends BaseResponse {
     private int type;
 
-    @SerializedName("totalPage")
-    private int totalPage;
 
     @Nullable
     private List<T> data;
@@ -35,13 +33,6 @@ public class ListResponse<T> extends BaseResponse{
         this.data = data;
     }
 
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
 
     public int getType() {
         return type;
@@ -66,4 +57,5 @@ public class ListResponse<T> extends BaseResponse{
     public ListResponse<T> error(@NonNull Throwable throwable) {
         return new ListResponse<>(Define.ResponseStatus.ERROR, null, throwable);
     }
+
 }

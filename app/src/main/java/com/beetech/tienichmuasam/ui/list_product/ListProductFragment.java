@@ -64,7 +64,8 @@ public class ListProductFragment extends BaseFragment<ListProductFragmentBinding
         binding.rcvListProduct.setOnItemClickListener((adapter, viewHolder, viewType, position) -> {
             ListProductResponse searchResponse = listProductAdapter.getItem(position, ListProductResponse.class);
             HashMap<String, String> data = new HashMap<>();
-            data.put(Constant.PRODUCT_ID, searchResponse.getId());
+            data.put(Constant.PRODUCT_ID, searchResponse.getProductId());
+            data.put(Constant.COLOR_ID, searchResponse.getColorId());
             getViewController().addFragment(DetaillProductFragment.class, data);
         });
         mViewModel.getListProduct(true);

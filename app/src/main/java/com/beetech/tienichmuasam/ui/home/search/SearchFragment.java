@@ -274,7 +274,7 @@ public class SearchFragment extends BaseFragment<FragmentSearchBinding> {
         binding.rcvSearch.setOnItemClickListener((adapter, viewHolder, viewType, position) -> {
             ListProductResponse searchResponse = listProductAdapter.getItem(position, ListProductResponse.class);
             HashMap<String, String> data = new HashMap<>();
-            data.put(Constant.PRODUCT_ID, searchResponse.getId());
+            data.put(Constant.PRODUCT_ID, searchResponse.getProductId());
             getViewController().addFragment(DetaillProductFragment.class, data);
         });
         searchViewModel.getSearch().observe(getViewLifecycleOwner(),

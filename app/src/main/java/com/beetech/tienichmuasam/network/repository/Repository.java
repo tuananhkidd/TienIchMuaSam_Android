@@ -1,9 +1,13 @@
 package com.beetech.tienichmuasam.network.repository;
 
 import com.beetech.tienichmuasam.BaseApplication;
+import com.beetech.tienichmuasam.base.ListLoadmoreReponse;
 import com.beetech.tienichmuasam.base.ListResponse;
+import com.beetech.tienichmuasam.base.ObjectResponse;
 import com.beetech.tienichmuasam.di.RxPreference;
 import com.beetech.tienichmuasam.di.RxPreferenceImpl;
+import com.beetech.tienichmuasam.entity.response.BannerResponse;
+import com.beetech.tienichmuasam.entity.response.DetailProductResponse;
 import com.beetech.tienichmuasam.entity.response.ListProductResponse;
 import com.beetech.tienichmuasam.entity.response.SearchResponse;
 import com.beetech.tienichmuasam.entity.response.UserResponse;
@@ -25,14 +29,26 @@ public class Repository {
         this.rxPreference = new RxPreferenceImpl(BaseApplication.getContext());
     }
 
-    public Single<ListResponse<SearchResponse>> search(int pageIndex) {
+    public Single<ListLoadmoreReponse<SearchResponse>> search(int pageIndex) {
         return apiInterface.search("h", pageIndex)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
-    public Single<ListResponse<ListProductResponse>> getListProduct(Integer categoryID, int pageIndex) {
+    public Single<ListLoadmoreReponse<ListProductResponse>> getListProduct(Integer categoryID, int pageIndex) {
         return apiInterface.getListProduct(categoryID, pageIndex)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<ListResponse<BannerResponse>> getListHomeBanner() {
+        return apiInterface.getListHomeBanner()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single<ObjectResponse<DetailProductResponse>> getDetailProduct(String productId, int colorId) {
+        return apiInterface.getDetailProduct(productId,colorId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }

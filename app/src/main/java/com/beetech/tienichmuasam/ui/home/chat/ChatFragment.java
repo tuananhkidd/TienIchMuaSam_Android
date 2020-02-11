@@ -100,7 +100,7 @@ public class ChatFragment extends BaseFragment<ChatFragmentBinding> implements E
     private void initChat() {
         mViewModel.getListMessage().observe(getViewLifecycleOwner(), baseMessages -> {
             chatAdapter.hideLoadingItem();
-            chatAdapter.addMessages(baseMessages.getData());
+            chatAdapter.addMessages(baseMessages.getData().getResults());
         });
 
         mViewModel.getMessageListener().observe(getViewLifecycleOwner(), data -> {
