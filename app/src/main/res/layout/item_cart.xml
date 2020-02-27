@@ -58,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_logo"
         app:layout_constraintTop_toTopOf="@+id/img_logo"
-        tools:text="ahuhu" />
+        tools:text="ahuhuhihi" />
 
     <TextView
         android:id="@+id/tv_discount"
